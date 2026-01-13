@@ -1,0 +1,600 @@
+[
+  {
+    "code": "G-MUELLERIN",
+    "name": "Müllerin Art",
+    "kategorie": "Garnituren",
+    "beschreibung": "Klassische Zubereitung für ganze Fische (z.B. Forelle). Der Fisch wird gesäuert, gesalzen, in Mehl gewendet (meliert) und in schäumender Butter goldbraun gebraten. Serviert mit Zitronenscheiben und Petersilie."
+  },
+  {
+    "code": "G-COLBERT",
+    "name": "Colbert",
+    "kategorie": "Garnituren",
+    "beschreibung": "Benannt nach dem Minister Ludwigs XIV. Meist für Seezunge oder Fischfilets. Der Fisch wird paniert, frittiert und mit einer speziellen Colbert-Butter (Maître d’hôtel-Butter mit Estragon und Fleischextrakt) gefüllt oder serviert."
+  },
+  {
+    "code": "G-BORDELAISE",
+    "name": "Bordelaisert Art",
+    "kategorie": "Garnituren",
+    "beschreibung": "Helle Sauce mit Weißwein, Schalotten und Mark. Oft mit einer Kruste aus Semmelbröseln, Kräutern und Butter überbacken."
+  },
+  {
+        "code": "T-KOCH",
+        "name": "Kochen",
+        "kategorie": "Technik",
+        "beschreibung": "Garen in siedender Flüssigkeit (100\\'b0C). Siehe auch [Dämpfen](5001).\\",
+        "details": ""
+    },
+    {
+        "code": "5200",
+        "name": "Fumet de Poisson",
+        "kategorie": "Grundlage",
+        "beschreibung": "Fischfond aus Gräten, Weißwein und Wurzelgemüse. Basis für alle Fischsaucen.\\",
+        "details": ""
+    },
+    {
+        "code": "T-REDU",
+        "name": "Reduzieren",
+        "kategorie": "Technik",
+        "beschreibung": "Einkochen von Flüssigkeiten zur Konzentration des Geschmacks und zur Bindung.\\",
+        "details": ""
+    },
+    {
+        "code": "G-DUCH",
+        "name": "Herzogin-Kartoffeln",
+        "kategorie": "Beilage",
+        "beschreibung": "Klassische Kartoffelmasse aus [mehligen Kartoffeln](10051), Eigelb und Butter. In Form gespritzt und goldgelb gebacken.\\",
+        "details": ""
+    },
+    {
+        "code": "T-BLAN",
+        "name": "Blanchieren",
+        "kategorie": "Technik",
+        "beschreibung": "Kurzes Garen in kochendem Wasser, gefolgt von [Abschrecken](T-ABSC) in Eiswasser. Erhält Vitamine und Farbe.\\",
+        "details": ""
+    },
+    {
+        "code": "6001",
+        "name": "Demiglace",
+        "kategorie": "Sauce",
+        "beschreibung": "Kraftsauce. Durch langes [Reduzieren](T-REDU) von braunem Kalbsfond gewonnene Basis für dunkle Saucen.\\",
+        "details": ""
+    },
+    {
+        "code": "T-LARD",
+        "name": "Lardieren",
+        "kategorie": "Technik",
+        "beschreibung": "Durchziehen von magerem Fleisch mit Speckstreifen mittels einer Lardiernadel. Verhindert Austrocknen.\\",
+        "details": ""
+    },
+    {
+        "code": "G-WILD",
+        "name": "Wildfond",
+        "kategorie": "Grundlage",
+        "beschreibung": "Spezieller Fond aus Wildknochen, Wacholder, Lorbeer und Rotwein. Kräftiges Aroma.\\",
+        "details": ""
+    },
+    {
+        "code": "G-BIER",
+        "name": "Bierteig",
+        "kategorie": "Teige",
+        "beschreibung": "Frittierteig aus Mehl, Eigelb, Bier und Eischnee. Ideal für gebackene Fischfilets oder Apfelbeignets.\\",
+        "details": ""
+    },
+    {
+        "code": "Z-FADEN",
+        "name": "Schwacher Faden",
+        "kategorie": "Zuckergrad",
+        "beschreibung": "103-105\\'b0C. Zucker bildet beim Auseinanderziehen zwischen den Fingern einen dünnen Faden.\\",
+        "details": ""
+    },
+    {
+        "code": "T-TEMP",
+        "name": "Temperieren",
+        "kategorie": "Technik",
+        "beschreibung": "Gezieltes Erwärmen und Abkühlen von Kuvertüre, um stabilen Glanz und \"Knack\" zu erhalten.\\",
+        "details": ""
+    },
+    {
+        "code": "E-621",
+        "name": "Mononatriumglutamat",
+        "kategorie": "E-Nummer",
+        "beschreibung": "Geschmacksverstärker. Oft in asiatischen Produkten oder Würzmischungen. Kann \"Umami\" verstärken.\\",
+        "details": ""
+    },
+    {
+        "code": "T-BRIDI",
+        "name": "Bridieren",
+        "kategorie": "Technik",
+        "beschreibung": "Das Binden von Geflügel mit Küchengarn, um die Form beim Garen zu erhalten und gleichmäßiges Garen zu sichern.\\",
+        "details": ""
+    },
+    {
+        "code": "G-FARC",
+        "name": "Fleischfarce",
+        "kategorie": "Grundlage",
+        "beschreibung": "Sehr fein zerkleinerte Masse aus Fleisch, Sahne und Gewürzen. Muss im [Kutter](T-CLAR) gekühlt verarbeitet werden.\\",
+        "details": ""
+    },
+    {
+        "code": "G-RISO",
+        "name": "Risotto-Technik",
+        "kategorie": "Technik",
+        "beschreibung": "Reis in Fett glasig dünsten, mit Wein ablöschen und unter ständigem Rühren nach und nach mit heißem [Fond](G-FOND) aufgießen.\\",
+        "details": ""
+    },
+    {
+        "code": "T-QUELL",
+        "name": "Quellen lassen",
+        "kategorie": "Technik",
+        "beschreibung": "Garen von Getreide (z.B. Reis) in exakt der Menge Flüssigkeit, die vollständig aufgesogen wird.\\",
+        "details": ""
+    },
+    {
+        "code": "G-GNOC",
+        "name": "Gnocchi di Patate",
+        "kategorie": "Beilage",
+        "beschreibung": "Italienische Kartoffelklößchen aus [mehligen Kartoffeln](10051), Mehl und Ei. Müssen im Salzwasser ziehen, bis sie oben schwimmen.\\ \\ --- ENDE STACK ------ START STACK MOLKEREI & FETTE ---\\ \\",
+        "details": ""
+    },
+    {
+        "code": "G-TIRA",
+        "name": "Tiramisu",
+        "kategorie": "Süßspeise",
+        "beschreibung": "'Zieh mich hoch'. Schichtspeise aus Löffelbiskuit, Espresso, [Mascarpone](10600) und Eigelb.\\",
+        "details": ""
+    },
+    {
+        "code": "T-AUFS",
+        "name": "Aufschlagen",
+        "kategorie": "Technik",
+        "beschreibung": "Einarbeiten von Luft in Massen (Sahne, Eischnee) zur Volumenvergrößerung und Lockerung.\\",
+        "details": ""
+    },
+    {
+        "code": "G-BECH",
+        "name": "Bechamel (Hering-Original)",
+        "kategorie": "Sauce",
+        "beschreibung": "Eine der 5 Grundsaucen. Aus weißer [Roux](G-ROUX) und Milch. Langsam [Sieden](T-KOCH) lassen, um Mehlgeschmack zu binden.\\",
+        "details": ""
+    },
+    {
+        "code": "G-PEST",
+        "name": "Pesto alla Genovese",
+        "kategorie": "Grundlage",
+        "beschreibung": "Kalte Sauce aus [Basilikum](10700), Pinienkernen, Knoblauch, Parmesan und Olivenöl. [Emulgiert](T-EMUL) im Mörser oder Mixer.\\",
+        "details": ""
+    },
+    {
+        "code": "T-INFU",
+        "name": "Infusion",
+        "kategorie": "Technik",
+        "beschreibung": "Ausziehen von Aromen in heißer Flüssigkeit (z.B. Kräuter in Sahne oder Tee in Wasser), ohne die Zutaten mitzuessen.\\",
+        "details": ""
+    },
+    {
+        "code": "G-REMO",
+        "name": "Remoulade",
+        "kategorie": "Sauce",
+        "beschreibung": "Ableitung der Mayonnaise mit gehackten Kapern, Gurken, Schalotten und Kräutern. Klassisch zu Backfisch.\\",
+        "details": ""
+    },
+    {
+        "code": "G-TART",
+        "name": "Tarte Tatin",
+        "kategorie": "Süßspeise",
+        "beschreibung": "Gestürzter Apfelkuchen. Äpfel werden in [Karamell](Z-KARA) und Butter gegart, mit Blätterteig belegt und gebacken.\\",
+        "details": ""
+    },
+    {
+        "code": "T-ZEST",
+        "name": "Zestieren",
+        "kategorie": "Technik",
+        "beschreibung": "Abziehen der äußersten, farbigen Schale von Zitrusfrüchten mit einem Zesteur. Die weiße Haut (Albedo) darf nicht mit abgerissen werden.\\",
+        "details": ""
+    },
+    {
+        "code": "G-COULI",
+        "name": "Fruchtcoulis",
+        "kategorie": "Grundlage",
+        "beschreibung": "Dickflüssige Fruchtmark-Sauce. Früchte werden püriert und durch ein feines Sieb [passiert](T-PASS).\\ \\ --- ENDE STACK ------ START STACK FINISH & FISCH-GARUNG ---\\ \\",
+        "details": ""
+    },
+    {
+        "code": "G-CHOR",
+        "name": "Sauce Choron",
+        "kategorie": "Sauce",
+        "beschreibung": "Eine [Sauce Bearnaise](5202), die mit [Tomatenmark](30101) oder Tomatenconcass\\'e9e verfeinert wird. Klassisch zu gegrilltem Fleisch.\\",
+        "details": ""
+    },
+    {
+        "code": "GF-GLAS",
+        "name": "Glasig (Fisch)",
+        "kategorie": "Garpunkt",
+        "beschreibung": "Kerntemperatur 48-52\\'b0C. Der Fisch ist im Kern noch leicht durchscheinend und extrem saftig. Das Eiweiß tritt gerade noch nicht aus.\\",
+        "details": ""
+    },
+    {
+        "code": "T-MONT2",
+        "name": "Aufmontieren",
+        "kategorie": "Technik",
+        "beschreibung": "Das Einrühren von eiskalten Butterstücken in eine heiße Sauce kurz vor dem Servieren. Bindet und verleiht Glanz.\\",
+        "details": ""
+    },
+    {
+        "code": "ERR",
+        "name": "Unbekannt",
+        "kategorie": "E-Nummer",
+        "beschreibung": "Fermentiertes Verdickungsmittel. Erzeugt cremige Texturen bei geringster Dosierung.\\ \\ --- ENDE STACK ------ START STACK ASIA & PILZE ---\\ \\",
+        "details": ""
+    },
+    {
+        "code": "CODE-UMAMI",
+        "name": "Umami",
+        "kategorie": "Geschmack",
+        "beschreibung": "Die fünfte Geschmacksrichtung (herzhaft/fleischig). Wird durch Glutamat ([E-621](E-621)) oder Fermentation ausgelöst.\\",
+        "details": ""
+    },
+    {
+        "code": "T-REINP",
+        "name": "Pilze reinigen",
+        "kategorie": "Technik",
+        "beschreibung": "Pilze nie ins Wasser legen (saugen sich voll). Trocken bürsten oder kurz in Mehlwasser schwenken und sofort trocknen.\\",
+        "details": ""
+    },
+    {
+        "code": "G-PONZU",
+        "name": "Ponzu-Sauce",
+        "kategorie": "Sauce",
+        "beschreibung": "Zitrusbasierte Würzsauce aus Sojasauce, Mirin und dem Saft von Yuzu-Früchten.\\ \\ --- ENDE STACK ------ START STACK BAR & HARDWARE ---\\ \\",
+        "details": ""
+    },
+    {
+        "code": "W-RIESL",
+        "name": "Riesling",
+        "kategorie": "Weinbau",
+        "beschreibung": "Die Königin der weißen Reben. Hohe Säure, Aromen von Pfirsich und Schiefer. Ideal zu Fisch und Geflügel.\\",
+        "details": ""
+    },
+    {
+        "code": "T-MAHL",
+        "name": "Mahlgrad",
+        "kategorie": "Technik",
+        "beschreibung": "Feinheit des Pulvers. Espresso erfordert feinen Mahlgrad, Stempelkanne (French Press) einen groben.\\",
+        "details": ""
+    },
+    {
+        "code": "H-MANDOL",
+        "name": "Mandoline",
+        "kategorie": "Hardware",
+        "beschreibung": "Französischer Gemüsehobel mit extrem scharfen Klingen für hauchdünne Scheiben oder Julienne. [Sicherheitshinweis: Handschutz nutzen!]\\",
+        "details": ""
+    },
+    {
+        "code": "T-ZISEL",
+        "name": "Ziselieren",
+        "kategorie": "Technik",
+        "beschreibung": "Einschneiden der Haut (z.B. bei Fisch oder Braten), um das Garen zu beschleunigen oder das Einrollen zu verhindern.\\ \\ --- ENDE STACK ------ START STACK FETTE & ESSIGE ---\\ \\",
+        "details": ""
+    },
+    {
+        "code": "T-FRIT",
+        "name": "Frittieren",
+        "kategorie": "Technik",
+        "beschreibung": "Garen in tiefem, heißen Fett (160-180\\'b0C). Das Gargut bildet sofort eine Kruste, die das Eindringen von Fett verhindert.\\",
+        "details": ""
+    },
+    {
+        "code": "K-RAUCH",
+        "name": "Rauchpunkt",
+        "kategorie": "Warenkunde",
+        "beschreibung": "Die Temperatur, bei der ein Fett zu rauchen beginnt und sich zersetzt. Raffinierte Öle haben einen höheren Rauchpunkt als native Öle.\\",
+        "details": ""
+    },
+    {
+        "code": "T-MARIN",
+        "name": "Marinieren",
+        "kategorie": "Technik",
+        "beschreibung": "Einlegen von Fleisch oder Fisch in eine gewürzte Flüssigkeit (Beize), um es mürbe zu machen oder zu aromatisieren.\\ \\ --- ENDE STACK ------ START STACK HYGIENE & INTERNATIONAL ---\\ \\",
+        "details": ""
+    },
+    {
+        "code": "H-HACCP",
+        "name": "HACCP-Konzept",
+        "kategorie": "Hygiene",
+        "beschreibung": "'Hazard Analysis Critical Control Points'. System zur Vermeidung von Gefahren in der Lebensmittelproduktion. Siehe [Kerntemperatur](H-KERN).\\",
+        "details": ""
+    },
+    {
+        "code": "I-MIREPO",
+        "name": "Mirepoix",
+        "kategorie": "International",
+        "beschreibung": "Französisch für Röstgemüse. Würfel (ca. 1cm) aus Karotten, Sellerie und Zwiebeln.\\",
+        "details": ""
+    },
+    {
+        "code": "T-POCHIER",
+        "name": "Pochieren",
+        "kategorie": "Technik",
+        "beschreibung": "Sanftes Garen in Flüssigkeit unter dem Siedepunkt (75-95\\'b0C). Ideal für Eier oder empfindlichen Fisch.\\",
+        "details": ""
+    },
+    {
+        "code": "G-TABOU",
+        "name": "Taboul\\'e9",
+        "kategorie": "Speise",
+        "beschreibung": "Libanesischer Petersiliensalat mit [Bulgur](11403), Tomaten, Minze und viel Zitronensaft.\\",
+        "details": ""
+    },
+    {
+        "code": "T-VAKU",
+        "name": "Vakuumieren",
+        "kategorie": "Technik",
+        "beschreibung": "Entzug von Luft aus einem Beutel mittels Vakuummaschine. Dient der Haltbarkeit oder als Vorbereitung für [Sous-Vide](H-SOUS).\\",
+        "details": ""
+    },
+    {
+        "code": "G-COUS",
+        "name": "Couscous-Dämpfen",
+        "kategorie": "Technik",
+        "beschreibung": "Klassische Zubereitung im Dampf über einem aromatischen Sud. Körnchen bleiben locker und verkleben nicht.\\ \\ --- ENDE STACK ------ START STACK WILDKRÄUTER & WURSTEN ---\\ \\",
+        "details": ""
+    },
+    {
+        "code": "T-RAEUC",
+        "name": "Räuchern",
+        "kategorie": "Technik",
+        "beschreibung": "Haltbarmachung durch Rauch. Kalt (<25\\'b0C), Warm (25-50\\'b0C) oder Heiß (50-85\\'b0C). Aroma hängt vom Holz ab (Buche, Erle, Hickory).\\",
+        "details": ""
+    },
+    {
+        "code": "G-GRUEN",
+        "name": "Grüne Sauce",
+        "kategorie": "Sauce",
+        "beschreibung": "Kräutersauce aus 7 Kräutern (u.a. Borretsch, Kerbel, [Sauerampfer](11501)). Wird kalt serviert zu Tafelspitz oder Eiern.\\",
+        "details": ""
+    },
+    {
+        "code": "T-WURST",
+        "name": "Wurst füllen",
+        "kategorie": "Technik",
+        "beschreibung": "Einbringen von Brät in Därme mittels Wurstfüller. Wichtig: Keine Lufteinschlüsse, da diese die Haltbarkeit gefährden.\\ \\ --- ENDE STACK ------ START STACK MEERESFRÜCHTE ---\\ \\",
+        "details": ""
+    },
+    {
+        "code": "T-ENTDA",
+        "name": "Entdarmen",
+        "kategorie": "Technik",
+        "beschreibung": "Entfernen des dunklen Darmtraktes bei Garnelen oder Hummer. Verhindert sandigen Geschmack und Bitterkeit.\\",
+        "details": ""
+    },
+    {
+        "code": "G-BISQU",
+        "name": "Crustanc\\'e9-Bisque",
+        "kategorie": "Suppe",
+        "beschreibung": "Edle Krustentiersuppe. Schalen werden geröstet, mit Cognac [flambiert](T-FLAMB), mit Fond aufgefüllt und mit Sahne [montiert](T-MONT2).\\",
+        "details": ""
+    },
+    {
+        "code": "T-SUD",
+        "name": "Fischsud (blau)",
+        "kategorie": "Technik",
+        "beschreibung": "Garen von Forelle oder Karpfen in Essigsud. Die Schleimschicht der Haut färbt sich dabei typisch blau. Der Fisch muss absolut fangfrisch sein.\\ \\ --- ENDE STACK ------ START STACK MEHL & BACK-CHEMIE ---\\ \\",
+        "details": ""
+    },
+    {
+        "code": "K-TYPE",
+        "name": "Mehltype",
+        "kategorie": "Warenkunde",
+        "beschreibung": "Gibt an, wie viel mg Mineralstoffe in 100g Mehl enthalten sind (Aschegehalt). Je höher die Zahl, desto dunkler und gesünder das Mehl.\\",
+        "details": ""
+    },
+    {
+        "code": "T-GAER",
+        "name": "Gären lassen",
+        "kategorie": "Technik",
+        "beschreibung": "Biologischer Prozess (Hefe), bei dem CO2 entsteht. Der Teig vergrößert sein Volumen. Wichtig: Keine Zugluft und konstante Wärme.\\",
+        "details": ""
+    },
+    {
+        "code": "K-ENZYM",
+        "name": "Enzyme (Amylasen)",
+        "kategorie": "Back-Chemie",
+        "beschreibung": "Spalten Stärke in Zucker auf. Nahrung für die Hefe. Zu viele Enzyme machen den Teig klebrig, zu wenige lassen ihn nicht aufgehen.\\ \\ --- ENDE STACK ------ START STACK KAFFEE & TEE ---\\ \\",
+        "details": ""
+    },
+    {
+        "code": "K-ROEST",
+        "name": "Röstgrade",
+        "kategorie": "Kaffee-Wissen",
+        "beschreibung": "Von hell (Cinnamon Roast) bis sehr dunkel (Italian Roast). Je dunkler, desto weniger Säure, aber mehr Bitterstoffe und Röstbataromen.\\",
+        "details": ""
+    },
+    {
+        "code": "T-BRUEH",
+        "name": "Brühtemperatur",
+        "kategorie": "Technik",
+        "beschreibung": "Kaffee: 92-96\\'b0C (nie kochend!). Grüner Tee: 70-80\\'b0C (verhindert Bitterkeit). Schwarzer Tee: 95-100\\'b0C.\\",
+        "details": ""
+    },
+    {
+        "code": "G-CHAI",
+        "name": "Masala Chai",
+        "kategorie": "Getränk",
+        "beschreibung": "Indischer Gewürztee mit Milch, Zucker und Gewürzen wie Kardamom, Ingwer und [Sternanis](10703).\\ \\ --- ENDE STACK ------ START STACK",
+        "details": ""
+    },
+    {
+        "code": "K-AOP",
+        "name": "AOP / DOP",
+        "kategorie": "Warenkunde",
+        "beschreibung": "'Appellation d\\'92Origine Prot\\'e9g\\'e9e'. Geschützte Ursprungsbezeichnung. Garantiert, dass Erzeugung, Verarbeitung und Herstellung in einem bestimmten Gebiet nach festen Regeln erfolgt.\\",
+        "details": ""
+    },
+    {
+        "code": "T-TRAPA",
+        "name": "Tröpfchen-Technik",
+        "kategorie": "Technik",
+        "beschreibung": "Das punktuelle Anrichten von Ölen oder Reduktionen auf Saucen oder Tellern zur optischen und geschmacklichen Akzentuierung.\\",
+        "details": ""
+    },
+    {
+        "code": "G-SOLER",
+        "name": "Solera-Verfahren",
+        "kategorie": "Warenkunde",
+        "beschreibung": "Reifungsprozess für Sherry und Sherryessig, bei dem junge und alte Jahrgänge kontinuierlich verschnitten werden.\\ \\ --- ENDE STACK #20 ---}",
+        "details": ""
+    },
+    { "code": "T-SAUT", "name": "Sautieren", "kategorie": "Garmethode", "beschreibung": "Kurzes Braten in sehr heißem Fett in einer Sauteuse (Pfanne mit hohem, schrägem Rand). Das Gut wird geschwenkt.", "details": "Ideal für kleingeschnittenes Fleisch oder Gemüse." },
+    { "code": "T-BLAN", "name": "Blanchieren", "kategorie": "Vorbereitung", "beschreibung": "Kurzes Garen in kochendem Salzwasser mit anschließendem Abschrecken in Eiswasser.", "details": "Erhält Farbe, Vitamine und Bissfestigkeit." },
+    { "code": "T-TOURN", "name": "Tournieren", "kategorie": "Schnitttechnik", "beschreibung": "Gemüse oder Kartoffeln mit einem Tourniermesser in eine gleichmäßige, längliche Form (meist 7 Flächen) bringen.", "details": "Dient der Optik und gleichmäßigen Garzeit." },
+    { "code": "T-JULI", "name": "Julienne", "kategorie": "Schnitttechnik", "beschreibung": "Schneiden von Lebensmitteln in feine, ca. 3-5 cm lange Streifen (Streichholzgröße).", "details": "Wichtig für Einlagen oder Wok-Gerichte." },
+    { "code": "T-BRUN", "name": "Brunoise", "kategorie": "Schnitttechnik", "beschreibung": "Sehr feine Würfel mit einer Kantenlänge von ca. 1-2 mm.", "details": "Basis für Saucen oder feine Füllungen." },
+    { "code": "T-MONT", "name": "Montieren", "kategorie": "Saucentechnik", "beschreibung": "Aufschlagen einer Sauce mit kalten Butterstücken zur Bindung und Glanzgebung.", "details": "Sauce darf danach nicht mehr kochen!" },
+    { "code": "T-REDU", "name": "Reduzieren", "kategorie": "Kochtechnik", "beschreibung": "Einkochen von Flüssigkeiten (Fonds, Saucen), um den Geschmack zu konzentrieren und die Konsistenz zu verdicken.", "details": "Flüssigkeit wird ohne Deckel stark erhitzt." },
+    { "code": "T-SOUF", "name": "Soufflieren", "kategorie": "Kochtechnik", "beschreibung": "Das lockere Aufgehen einer Masse oder Panade durch Hitze. Speziell beim Schnitzel: Fett über die Panade gießen.", "details": "Sorgt für die typische Wellen-Kruste." },
+    { "code": "T-POEL", "name": "Poelieren", "kategorie": "Garmethode", "beschreibung": "Helles Schmoren: Garen im eigenen Saft bei milder Hitze unter Zugabe von Fett, ohne Farbe anzunehmen.", "details": "Klassisch für Geflügel oder Kalb." },
+    { "code": "T-BRAI", "name": "Braisieren", "kategorie": "Garmethode", "beschreibung": "Klassisches Schmoren: Erst scharf anbraten, dann in Flüssigkeit (Fond/Wein) zugedeckt im Ofen garen.", "details": "Ideal für bindegewebsreiches Fleisch." },
+    { "code": "T-DEGL", "name": "Deglacieren", "kategorie": "Kochtechnik", "beschreibung": "Ablöschen des Bratsatzes mit Flüssigkeit (Wein, Fond), um die Röststoffe zu lösen.", "details": "Basis jeder guten Sauce." },
+    { "code": "T-PASS", "name": "Passieren", "kategorie": "Vorbereitung", "beschreibung": "Flüssigkeiten oder Massen durch ein Sieb oder Etamin (Passiertuch) drücken oder gießen.", "details": "Entfernt grobe Bestandteile/Gewürze." },
+    { "code": "T-CLAR", "name": "Klären", "kategorie": "Kochtechnik", "beschreibung": "Reinigen einer trüben Brühe (Consommé) mithilfe von Klärfleisch und Eiweiß.", "details": "Eiweiß bindet Trübstoffe und wird danach entfernt." },
+    { "code": "T-MARI", "name": "Marinieren", "kategorie": "Vorbereitung", "beschreibung": "Einlegen von Fleisch/Fisch in eine gewürzte Flüssigkeit (Beize), um es mürbe zu machen oder zu aromatisieren.", "details": "Säure (Zitronen/Essig) spaltet Eiweißketten." },
+    { "code": "T-NAPPI", "name": "Nappieren", "kategorie": "Anrichten", "beschreibung": "Das gleichmäßige Überziehen eines fertig angerichteten Gerichts mit Sauce.", "details": "Nur das Hauptgut wird leicht überzogen." },
+    { "code": "T-ALDEN", "name": "Al dente", "kategorie": "Küchenlatein", "beschreibung": "Garzustand von Nudeln oder Gemüse: 'mit Biss'.", "details": "Nicht weichgekocht." },
+    { "code": "T-BAIN", "name": "Bain-Marie", "kategorie": "Gerätekunde", "beschreibung": "Wasserbad zum Schmelzen (Schokolade) oder Warmhalten von empfindlichen Speisen.", "details": "Verhindert das Anbrennen oder Ausflocken." },
+    { "code": "T-BATTI", "name": "Plattieren", "kategorie": "Vorbereitung", "beschreibung": "Flachklopfen von Fleischstücken (z.B. Schnitzel), um eine gleichmäßige Dicke zu erzielen.", "details": "Immer mit Klarsichtfolie arbeiten, um Fasern nicht zu zerstören." },
+    { "code": "T-GLACI", "name": "Glasieren", "kategorie": "Kochtechnik", "beschreibung": "Überziehen von Speisen mit Glanz (Zucker/Butter-Emulsion bei Gemüse oder Fleischsaft).", "details": "Sorgt für süßlich-glänzende Oberfläche." },
+    { "code": "T-GRATI", "name": "Gratinieren", "kategorie": "Garmethode", "beschreibung": "Überbacken einer Speise bei starker Oberhitze (Salamander), oft mit Käse oder Bröseln.", "details": "Bildung einer würzigen Kruste." },
+    { "code": "T-LEGIE", "name": "Legieren", "kategorie": "Saucentechnik", "beschreibung": "Binden einer Suppe/Sauce mit einer Mischung aus Eigelb und Sahne (Legierung).", "details": "Nicht mehr kochen, sonst gerinnt das Eigelb!" },
+    { "code": "T-MISEP", "name": "Mise en Place", "kategorie": "Organisation", "beschreibung": "Die komplette Vorbereitung des Arbeitsplatzes (Werkzeuge, Zutaten) vor dem eigentlichen Service.", "details": "A und O der Profi-Küche." },
+    { "code": "T-PARIE", "name": "Parieren", "kategorie": "Vorbereitung", "beschreibung": "Fleisch von Sehnen, Silberhaut und überschüssigem Fett befreien.", "details": "Abschnitte (Parüren) für Fonds nutzen." },
+    { "code": "T-POCH", "name": "Pochieren", "kategorie": "Garmethode", "beschreibung": "Garziehen unter dem Siedepunkt (ca. 75-95 Grad) in Flüssigkeit.", "details": "Klassisch für Eier oder Fisch." },
+    { "code": "T-ROUX", "name": "Roux", "kategorie": "Grundlage", "beschreibung": "Mehlschwitze: Mischung aus Fett und Mehl als Bindemittel für Saucen.", "details": "Gibt es hell, blond oder dunkel." },
+    { "code": "T-CONCA", "name": "Concassée", "kategorie": "Schnitttechnik", "beschreibung": "Häuten, Entkernen und Würfeln von Tomaten.", "details": "Nur das reine Fruchtfleisch wird verwendet." },
+    { "code": "T-LARD", "name": "Lardieren", "kategorie": "Vorbereitung", "beschreibung": "Spicken von magerem Fleisch mit Speckstreifen mithilfe einer Spicknadel.", "details": "Verhindert das Austrocknen beim Braten." },
+    { "code": "T-ZISE", "name": "Ziselieren", "kategorie": "Schnitttechnik", "beschreibung": "Einschneiden der Oberfläche (Haut/Fett), um das Garen zu beschleunigen oder das Aufplatzen zu verhindern.", "details": "Häufig bei Fisch oder Entenbrust." },
+    { "code": "T-FRIT", "name": "Frittieren", "kategorie": "Garmethode", "beschreibung": "Schwimmend Garen in heißem Fett (ca. 160-180 Grad).", "details": "Sorgt für krosse Oberfläche." },
+    { "code": "T-SWEAT", "name": "Anschwitzen", "kategorie": "Kochtechnik", "beschreibung": "Garen von Zwiebeln oder Gemüse in wenig Fett ohne Farbgebung, bis sie glasig sind.", "details": "Löst erste Aromen." },
+    { "code": "T-CONF", "name": "Konfieren", "kategorie": "Garmethode", "beschreibung": "Sanftes Garen in reichlich Fett (Öl/Schmalz) bei niedriger Temperatur.", "details": "Macht Fleisch extrem zart (z.B. Enten-Confit)." },
+    { "code": "T-EMUL", "name": "Emulgieren", "kategorie": "Chemie", "beschreibung": "Verbinden von zwei eigentlich unmissbaren Flüssigkeiten (Wasser & Öl), z.B. bei Mayonnaise.", "details": "Erfordert oft einen Emulgator (Eigelb/Senf)." },
+    { "code": "T-INFU", "name": "Infusion", "kategorie": "Technik", "beschreibung": "Aromatisieren einer Flüssigkeit durch Ziehenlassen von Kräutern oder Gewürzen.", "details": "Ähnlich wie bei Tee." },
+    { "code": "T-MACER", "name": "Mazerieren", "kategorie": "Vorbereitung", "beschreibung": "Früchte in Alkohol oder Zuckerlösung ziehen lassen.", "details": "Klassisch für Desserts." },
+    { "code": "T-PAYS", "name": "Paysanne", "kategorie": "Schnitttechnik", "beschreibung": "Ländliche Art: Schneiden in feine Plättchen (Quadrate/Dreiecke).", "details": "Meist ca. 1 cm Kantenlänge, dünn." },
+    { "code": "T-SALAM", "name": "Salamander", "kategorie": "Gerätekunde", "beschreibung": "Küchengerät mit starker Oberhitze zum Gratinieren oder Glasieren.", "details": "Höhenverstellbar für exakte Hitze." },
+    { "code": "T-TAMIS", "name": "Tamisieren", "kategorie": "Vorbereitung", "beschreibung": "Feines Durchsieben von Mehl oder Puderzucker.", "details": "Verhindert Klumpenbildung." },
+    { "code": "T-VINAIG", "name": "Vinaigrette", "kategorie": "Grundlage", "beschreibung": "Kalte Sauce aus Essig, Öl, Salz und Pfeffer.", "details": "Grundformel meist 1 Teil Essig zu 3 Teilen Öl." },
+    { "code": "T-ZEST", "name": "Zesten", "kategorie": "Schnitttechnik", "beschreibung": "Hauchdünne Streifen der äußersten, farbigen Schale von Zitrusfrüchten.", "details": "Ohne das bittere Weiße (Albedo)." },
+    { "code": "T-FLAM", "name": "Flambieren", "kategorie": "Kochtechnik", "beschreibung": "Abbrennen von hochprozentigem Alkohol über einer Speise zur Aromatisierung.", "details": "Vorsicht: Dunstabzugshaube ausschalten!" },
+    { "code": "T-FARCE", "name": "Farce", "kategorie": "Grundlage", "beschreibung": "Feingemahlene Masse zum Füllen von Fleisch, Fisch oder Geflügel.", "details": "Besteht meist aus Fleisch, Sahne und Gewürzen." },
+    { "code": "T-CHINO", "name": "Passiersieb", "kategorie": "Gerätekunde", "beschreibung": "Spitzsieb (Chinois) für extrem feines Passieren von Saucen.", "details": "Form erlaubt gezieltes Gießen." },
+    { "code": "T-BLANCH", "name": "Bleichgaren", "kategorie": "Garmethode", "beschreibung": "Garen in weißem Grundfond (Wasser, Mehl, Zitrone), damit helles Gemüse weiß bleibt.", "details": "Klassisch für Schwarzwurzeln oder Champignons." },
+    { "code": "T-QUINT", "name": "Quintessenz", "kategorie": "Grundlage", "beschreibung": "Stark reduzierte Essenz einer Suppe oder Sauce mit höchster Geschmackskonzentration.", "details": "Wird oft tropfenweise verwendet." },
+    { "code": "T-SOUVI", "name": "Sous-Vide", "kategorie": "Garmethode", "beschreibung": "Vakuumgaren im Wasserbad bei exakt kontrollierter Niedrigtemperatur.", "details": "Kein Aromaverlust, perfekte Garstufe." },
+    { "code": "T-TRANC", "name": "Tranchieren", "kategorie": "Vorbereitung", "beschreibung": "Fachgerechtes Zerschneiden von Braten oder Geflügel.", "details": "Immer quer zur Faser schneiden." },
+    { "code": "T-ABSCH", "name": "Abschrecken", "kategorie": "Vorbereitung", "beschreibung": "Gegartes Gut sofort in eiskaltes Wasser tauchen.", "details": "Stoppt den Garprozess sofort." },
+    { "code": "T-AUPC", "name": "Au Point", "kategorie": "Küchenlatein", "beschreibung": "Garzustand: Auf den Punkt. Genau richtig rosa/saftig.", "details": "Zwischen Englisch und Medium." },
+    { "code": "T-BERRE", "name": "Beurre manié", "kategorie": "Saucentechnik", "beschreibung": "Mehlbutter: Kalt verknetete Mischung aus Mehl und Butter zur schnellen Bindung.", "details": "Wird in die kochende Sauce eingerührt." },
+    { "code": "T-CORDO", "name": "Cordon", "kategorie": "Anrichten", "beschreibung": "Ein Saucenspiegel, der kreisförmig um das Hauptgut gegossen wird.", "details": "Sieht edel aus und hält das Gut knusprig." }
+  ,
+      { "code": "A-NAPPI", "name": "Nappieren", "kategorie": "Anrichten", "beschreibung": "Gleichmäßiges Überziehen eines Gerichts mit Sauce.", "details": "Die Sauce sollte das Produkt nur leicht maskieren." },
+      { "code": "A-CORDO", "name": "Cordon", "kategorie": "Anrichten", "beschreibung": "Ein Saucenspiegel, der kreisförmig um das Hauptgut gegossen wird.", "details": "Hält die Kruste des Produkts (z.B. Schnitzel) knusprig." },
+      { "code": "A-SPIEG", "name": "Saucenspiegel", "kategorie": "Anrichten", "beschreibung": "Die Sauce wird flächig auf dem Tellerboden verteilt, bevor das Gut aufgelegt wird.", "details": "Ideal für farblich kontrastreiche Saucen." },
+      { "code": "A-DRESS", "name": "Dressieren", "kategorie": "Anrichten", "beschreibung": "Speisen (z.B. Püree) mit Spritzbeutel und Tülle in Form bringen.", "details": "Sorgt für exakte, wiederholbare Optik." },
+      { "code": "A-DOTS", "name": "Dots", "kategorie": "Anrichten", "beschreibung": "Punktförmiges Aufsetzen von Gelen, Cremes oder Saucen.", "details": "Oft in verschiedenen Größen für ein modernes Design." },
+      { "code": "A-SOIL", "name": "Soil / Erde", "kategorie": "Anrichten", "beschreibung": "Essbare Streusel (aus Nüssen, Pumpernickel, dehydrierten Oliven), die wie Erde aussehen.", "details": "Gibt Textur und eine natürliche Optik." },
+      { "code": "A-TRANC", "name": "Tranchieren", "kategorie": "Anrichten", "beschreibung": "Das fachgerechte Aufschneiden von Fleisch am Gast oder vor dem Anrichten.", "details": "Wichtig: Immer quer zur Faser." },
+      { "code": "A-QUENE", "name": "Nocken / Quenelles", "kategorie": "Anrichten", "beschreibung": "Mit zwei Löffeln geformte, ovale Klößchen (aus Mousse, Eis oder Püree).", "details": "Klassische Form für Beilagen oder Desserts." },
+      { "code": "A-STACK", "name": "Stacking", "kategorie": "Anrichten", "beschreibung": "Das Stapeln von Komponenten in die Höhe.", "details": "Erzeugt Volumen und Dynamik auf dem Teller." },
+      { "code": "A-SMEAR", "name": "Smear / Ausstreichen", "kategorie": "Anrichten", "beschreibung": "Ein Klecks Püree wird mit einem Löffelrücken flach über den Teller gezogen.", "details": "Moderner Look, oft die Basis für das Hauptgut." },
+      { "code": "A-CLOCH", "name": "Cloche", "kategorie": "Anrichten", "beschreibung": "Servierhaube, die das Gericht bis zum Gast schützt und beim Abheben Aroma freigibt.", "details": "Oft für Räuchereffekte genutzt." },
+      { "code": "A-ENVIS", "name": "En Visage", "kategorie": "Anrichten", "beschreibung": "Das Anrichten der Hauptkomponente zum Gast hin.", "details": "Der Gast soll 'dem Fleisch ins Gesicht schauen'." },
+      { "code": "A-GARNI", "name": "Garnieren", "kategorie": "Anrichten", "beschreibung": "Beifügen von essbaren Dekorationselementen (Kräuter, Blüten).", "details": "Muss geschmacklich zum Gericht passen!" },
+      { "code": "A-FLOWER", "name": "Edible Flowers", "kategorie": "Anrichten", "beschreibung": "Einsatz von essbaren Blüten (Stiefmütterchen, Kapuzinerkresse).", "details": "Sorgt für Farbtupfer." },
+      { "code": "A-CRISP", "name": "Crisps / Chips", "kategorie": "Anrichten", "beschreibung": "Hauchdünne, krosse Elemente (Gemüsechips, Filoteig).", "details": "Gibt dem Gericht die nötige Höhe." },
+      { "code": "A-DEHYD", "name": "Dehydrieren", "kategorie": "Anrichten", "beschreibung": "Getrocknete Komponenten (Obstscheiben, Kräuterstaub).", "details": "Konzentrierter Geschmack und lange Haltbarkeit." },
+      { "code": "A-FOAM", "name": "Espuma / Schaum", "kategorie": "Anrichten", "beschreibung": "Mit dem Sahnesiphon aufgeschäumte Saucen oder Mousses.", "details": "Sehr leichtes Mundgefühl." },
+      { "code": "A-AIR", "name": "Air / Luft", "kategorie": "Anrichten", "beschreibung": "Mit Lecithin aufgeschlagener, sehr instabiler und leichter Schaum.", "details": "Wird oft mit einem Milchaufschäumer erzeugt." },
+      { "code": "A-DASH", "name": "Dash", "kategorie": "Anrichten", "beschreibung": "Ein kleiner Spritzer oder eine Prise einer intensiven Zutat direkt vor dem Servieren.", "details": "Z.B. Trüffelöl oder Maltons-Salz." },
+      { "code": "A-ETAL", "name": "Etalieren", "kategorie": "Anrichten", "beschreibung": "Fächerförmiges Auslegen von tranchiertem Fleisch oder Fisch.", "details": "Klassisch bei Entenbrust." },
+      { "code": "A-PINCE", "name": "Anrichtepinzette", "kategorie": "Anrichten", "beschreibung": "Werkzeug zum präzisen Platzieren von kleinsten Komponenten.", "details": "Standardwerkzeug in der Sterneküche." },
+      { "code": "A-RING", "name": "Anrichtering", "kategorie": "Anrichten", "beschreibung": "Metallring zum Formen von Tatar, Reis oder Schichtsalaten.", "details": "Sorgt für exakte zylindrische Formen." },
+      { "code": "A-CHEFK", "name": "Chef-Kringel", "kategorie": "Anrichten", "beschreibung": "Kreisförmiges Auftragen von Saucen mittels einer Dosierflasche.", "details": "Präziser als ein Löffel." },
+      { "code": "A-CRUMB", "name": "Crumble", "kategorie": "Anrichten", "beschreibung": "Gebackene Streusel als Unterlage oder Topping.", "details": "Bringt Crunch ins Gericht." },
+      { "code": "A-DUST", "name": "Dusting / Bestäuben", "kategorie": "Anrichten", "beschreibung": "Feines Pulver (Kakaopulver, Algenstaub, Pilzpulver) über den Teller sieben.", "details": "Oft mit Schablonen für Logos oder Muster." },
+      { "code": "A-OIL", "name": "Kräuteröl-Finish", "kategorie": "Anrichten", "beschreibung": "Leuchtend grünes Öl (Schnittlauchöl), das punktweise in eine Sauce gegeben wird.", "details": "Erzeugt einen optischen Kontrast (Perleffekt)." },
+      { "code": "A-CORAL", "name": "Korallen-Hippe", "kategorie": "Anrichten", "beschreibung": "Spitzenartiges Gebäck aus Wasser, Öl und Mehl.", "details": "Sorgt für einen filigranen 'Wow-Effekt'." },
+      { "code": "A-JELLY", "name": "Fluid Gel", "kategorie": "Anrichten", "beschreibung": "Ein geliertes Püree, das wieder flüssig gemixt wurde, um standfeste Tupfen zu setzen.", "details": "Hält die Form auch bei Hitze." },
+      { "code": "A-TURRE", "name": "Türmchen", "kategorie": "Anrichten", "beschreibung": "Klassisches Schichten von runden Komponenten.", "details": "Z.B. Tomate-Mozzarella-Turm." },
+      { "code": "A-OFFSET", "name": "Offset-Anrichten", "kategorie": "Anrichten", "beschreibung": "Asymmetrisches Platzieren der Speisen (nicht mittig auf dem Teller).", "details": "Wirkt modern und künstlerisch." },
+      { "code": "A-CENTER", "name": "Zentralfokus", "kategorie": "Anrichten", "beschreibung": "Das Hauptgut liegt exakt in der Mitte, Beilagen kreisförmig darum.", "details": "Der klassische 'Fine Dining' Look." },
+      { "code": "A-SPLASH", "name": "Splash-Technik", "kategorie": "Anrichten", "beschreibung": "Ein Klecks Sauce wird mit Schwung (oder einem Löffelaufschlag) auf den Teller 'gespritzt'.", "details": "Wirkt wie ein Action-Painting." },
+      { "code": "A-CARPET", "name": "Teppich", "kategorie": "Anrichten", "beschreibung": "Flächiges Auslegen des Tellers mit dünnen Scheiben (Carpaccio).", "details": "Der Teller ist fast vollständig bedeckt." },
+      { "code": "A-BRANCH", "name": "Bouquet / Sträußchen", "kategorie": "Anrichten", "beschreibung": "Kräuter oder Sprossen werden aufrecht wie ein kleiner Strauß in ein Püree gesteckt.", "details": "Gibt vertikale Höhe." },
+      { "code": "A-PEARL", "name": "Perlen / Kaviar", "kategorie": "Anrichten", "beschreibung": "Saucen, die mittels Spherifikation in Perlenform gebracht wurden.", "details": "Z.B. Balsamico-Perlen." },
+      { "code": "A-BRUSH", "name": "Pinselstrich", "kategorie": "Anrichten", "beschreibung": "Sauce wird mit einem Silikonpinsel über den Teller gestrichen.", "details": "Textur des Pinsels bleibt sichtbar." },
+      { "code": "A-LEAF", "name": "Blattgold / Silber", "kategorie": "Anrichten", "beschreibung": "Einsatz von hauchdünnem Echtgold zur Veredelung.", "details": "Geschmacksneutral, purer Luxus." },
+      { "code": "A-NEST", "name": "Nest", "kategorie": "Anrichten", "beschreibung": "Anrichten von Pasta oder Strohkartoffeln in Nestform.", "details": "Hohlraum in der Mitte kann gefüllt werden." },
+      { "code": "A-MINIMAL", "name": "Minimalismus", "kategorie": "Anrichten", "beschreibung": "Sehr wenige, aber perfekt platzierte Komponenten.", "details": "Viel freie Fläche auf dem Teller ('Negative Space')." },
+      { "code": "A-COLOR", "name": "Color-Blocking", "kategorie": "Anrichten", "beschreibung": "Anordnen von Komponenten mit starkem Farbkontrast.", "details": "Z.B. schwarzer Teller, weiße Sauce, rote Bete." },
+      { "code": "A-TWEEZ", "name": "Pinzetten-Salat", "kategorie": "Anrichten", "beschreibung": "Jedes Blatt Salat wird einzeln mit der Pinzette stehend angerichtet.", "details": "Maximale Luftigkeit und Volumen." },
+      { "code": "A-RIM", "name": "Tellerrand-Deko", "kategorie": "Anrichten", "beschreibung": "Bestreuen des Rands mit Gewürzen oder Kräutern.", "details": "Heute eher verpönt, klassisch aber verbreitet." },
+      { "code": "A-BUTTER", "name": "Butter-Locken", "kategorie": "Anrichten", "beschreibung": "Mit dem Butterroller geformte Locken.", "details": "Klassische Beigabe zum Brotgedeck." },
+      { "code": "A-ICE", "name": "Crushed Ice Bett", "kategorie": "Anrichten", "beschreibung": "Servieren von Austern oder Kaviar auf Eis.", "details": "Dient der Kühlung und Optik." },
+      { "code": "A-WOOD", "name": "Rustikaler Stil", "kategorie": "Anrichten", "beschreibung": "Servieren auf Holzbrettern, Schiefer oder Stein.", "details": "Passend für Steak oder Käse." },
+      { "code": "A-TEMP", "name": "Temperaturspiel", "kategorie": "Anrichten", "beschreibung": "Gezieltes Platzieren von eiskalten neben sehr heißen Elementen.", "details": "Spannendes Erlebnis im Mund." },
+      { "code": "A-GLAZE", "name": "Abglänzen", "kategorie": "Anrichten", "beschreibung": "Bestreichen von Fleisch oder Gebäck mit Fond/Fett für mehr Glanz.", "details": "Verhindert stumpfes Aussehen unter dem Pass-Licht." },
+      { "code": "A-MICRO", "name": "Micro-Greens", "kategorie": "Anrichten", "beschreibung": "Einsatz von extrem kleinen Keimlingen (Kresse, Shiso).", "details": "Viel Geschmack auf kleinem Raum." },
+      { "code": "A-ASYM", "name": "Asymmetrie", "kategorie": "Anrichten", "beschreibung": "Bewusstes Ungleichgewicht beim Anrichten.", "details": "Wirkt natürlicher und weniger statisch." },
+      { "code": "A-FINISH", "name": "Finish am Gast", "kategorie": "Anrichten", "beschreibung": "Sauce wird erst am Tisch vom Service angegossen.", "details": "Interaktives Erlebnis und Schutz der Textur." }
+    ,
+        { "code": "A-NAPPI", "name": "Nappieren", "kategorie": "Anrichten", "beschreibung": "Gleichmäßiges Überziehen eines Gerichts mit Sauce.", "details": "Die Sauce sollte das Produkt nur leicht maskieren." },
+        { "code": "A-CORDO", "name": "Cordon", "kategorie": "Anrichten", "beschreibung": "Ein Saucenspiegel, der kreisförmig um das Hauptgut gegossen wird.", "details": "Hält die Kruste des Produkts (z.B. Schnitzel) knusprig." },
+        { "code": "A-SPIEG", "name": "Saucenspiegel", "kategorie": "Anrichten", "beschreibung": "Die Sauce wird flächig auf dem Tellerboden verteilt, bevor das Gut aufgelegt wird.", "details": "Ideal für farblich kontrastreiche Saucen." },
+        { "code": "A-DRESS", "name": "Dressieren", "kategorie": "Anrichten", "beschreibung": "Speisen (z.B. Püree) mit Spritzbeutel und Tülle in Form bringen.", "details": "Sorgt für exakte, wiederholbare Optik." },
+        { "code": "A-DOTS", "name": "Dots", "kategorie": "Anrichten", "beschreibung": "Punktförmiges Aufsetzen von Gelen, Cremes oder Saucen.", "details": "Oft in verschiedenen Größen für ein modernes Design." },
+        { "code": "A-SOIL", "name": "Soil / Erde", "kategorie": "Anrichten", "beschreibung": "Essbare Streusel (aus Nüssen, Pumpernickel, dehydrierten Oliven), die wie Erde aussehen.", "details": "Gibt Textur und eine natürliche Optik." },
+        { "code": "A-TRANC", "name": "Tranchieren", "kategorie": "Anrichten", "beschreibung": "Das fachgerechte Aufschneiden von Fleisch am Gast oder vor dem Anrichten.", "details": "Wichtig: Immer quer zur Faser." },
+        { "code": "A-QUENE", "name": "Nocken / Quenelles", "kategorie": "Anrichten", "beschreibung": "Mit zwei Löffeln geformte, ovale Klößchen (aus Mousse, Eis oder Püree).", "details": "Klassische Form für Beilagen oder Desserts." },
+        { "code": "A-STACK", "name": "Stacking", "kategorie": "Anrichten", "beschreibung": "Das Stapeln von Komponenten in die Höhe.", "details": "Erzeugt Volumen und Dynamik auf dem Teller." },
+        { "code": "A-SMEAR", "name": "Smear / Ausstreichen", "kategorie": "Anrichten", "beschreibung": "Ein Klecks Püree wird mit einem Löffelrücken flach über den Teller gezogen.", "details": "Moderner Look, oft die Basis für das Hauptgut." },
+        { "code": "A-CLOCH", "name": "Cloche", "kategorie": "Anrichten", "beschreibung": "Servierhaube, die das Gericht bis zum Gast schützt und beim Abheben Aroma freigibt.", "details": "Oft für Räuchereffekte genutzt." },
+        { "code": "A-ENVIS", "name": "En Visage", "kategorie": "Anrichten", "beschreibung": "Das Anrichten der Hauptkomponente zum Gast hin.", "details": "Der Gast soll 'dem Fleisch ins Gesicht schauen'." },
+        { "code": "A-GARNI", "name": "Garnieren", "kategorie": "Anrichten", "beschreibung": "Beifügen von essbaren Dekorationselementen (Kräuter, Blüten).", "details": "Muss geschmacklich zum Gericht passen!" },
+        { "code": "A-FLOWER", "name": "Edible Flowers", "kategorie": "Anrichten", "beschreibung": "Einsatz von essbaren Blüten (Stiefmütterchen, Kapuzinerkresse).", "details": "Sorgt für Farbtupfer." },
+        { "code": "A-CRISP", "name": "Crisps / Chips", "kategorie": "Anrichten", "beschreibung": "Hauchdünne, krosse Elemente (Gemüsechips, Filoteig).", "details": "Gibt dem Gericht die nötige Höhe." },
+        { "code": "A-DEHYD", "name": "Dehydrieren", "kategorie": "Anrichten", "beschreibung": "Getrocknete Komponenten (Obstscheiben, Kräuterstaub).", "details": "Konzentrierter Geschmack und lange Haltbarkeit." },
+        { "code": "A-FOAM", "name": "Espuma / Schaum", "kategorie": "Anrichten", "beschreibung": "Mit dem Sahnesiphon aufgeschäumte Saucen oder Mousses.", "details": "Sehr leichtes Mundgefühl." },
+        { "code": "A-AIR", "name": "Air / Luft", "kategorie": "Anrichten", "beschreibung": "Mit Lecithin aufgeschlagener, sehr instabiler und leichter Schaum.", "details": "Wird oft mit einem Milchaufschäumer erzeugt." },
+        { "code": "A-DASH", "name": "Dash", "kategorie": "Anrichten", "beschreibung": "Ein kleiner Spritzer oder eine Prise einer intensiven Zutat direkt vor dem Servieren.", "details": "Z.B. Trüffelöl oder Maltons-Salz." },
+        { "code": "A-ETAL", "name": "Etalieren", "kategorie": "Anrichten", "beschreibung": "Fächerförmiges Auslegen von tranchiertem Fleisch oder Fisch.", "details": "Klassisch bei Entenbrust." },
+        { "code": "A-PINCE", "name": "Anrichtepinzette", "kategorie": "Anrichten", "beschreibung": "Werkzeug zum präzisen Platzieren von kleinsten Komponenten.", "details": "Standardwerkzeug in der Sterneküche." },
+        { "code": "A-RING", "name": "Anrichtering", "kategorie": "Anrichten", "beschreibung": "Metallring zum Formen von Tatar, Reis oder Schichtsalaten.", "details": "Sorgt für exakte zylindrische Formen." },
+        { "code": "A-CHEFK", "name": "Chef-Kringel", "kategorie": "Anrichten", "beschreibung": "Kreisförmiges Auftragen von Saucen mittels einer Dosierflasche.", "details": "Präziser als ein Löffel." },
+        { "code": "A-CRUMB", "name": "Crumble", "kategorie": "Anrichten", "beschreibung": "Gebackene Streusel als Unterlage oder Topping.", "details": "Bringt Crunch ins Gericht." },
+        { "code": "A-DUST", "name": "Dusting / Bestäuben", "kategorie": "Anrichten", "beschreibung": "Feines Pulver (Kakaopulver, Algenstaub, Pilzpulver) über den Teller sieben.", "details": "Oft mit Schablonen für Logos oder Muster." },
+        { "code": "A-OIL", "name": "Kräuteröl-Finish", "kategorie": "Anrichten", "beschreibung": "Leuchtend grünes Öl (Schnittlauchöl), das punktweise in eine Sauce gegeben wird.", "details": "Erzeugt einen optischen Kontrast (Perleffekt)." },
+        { "code": "A-CORAL", "name": "Korallen-Hippe", "kategorie": "Anrichten", "beschreibung": "Spitzenartiges Gebäck aus Wasser, Öl und Mehl.", "details": "Sorgt für einen filigranen 'Wow-Effekt'." },
+        { "code": "A-JELLY", "name": "Fluid Gel", "kategorie": "Anrichten", "beschreibung": "Ein geliertes Püree, das wieder flüssig gemixt wurde, um standfeste Tupfen zu setzen.", "details": "Hält die Form auch bei Hitze." },
+        { "code": "A-TURRE", "name": "Türmchen", "kategorie": "Anrichten", "beschreibung": "Klassisches Schichten von runden Komponenten.", "details": "Z.B. Tomate-Mozzarella-Turm." },
+        { "code": "A-OFFSET", "name": "Offset-Anrichten", "kategorie": "Anrichten", "beschreibung": "Asymmetrisches Platzieren der Speisen (nicht mittig auf dem Teller).", "details": "Wirkt modern und künstlerisch." },
+        { "code": "A-CENTER", "name": "Zentralfokus", "kategorie": "Anrichten", "beschreibung": "Das Hauptgut liegt exakt in der Mitte, Beilagen kreisförmig darum.", "details": "Der klassische 'Fine Dining' Look." },
+        { "code": "A-SPLASH", "name": "Splash-Technik", "kategorie": "Anrichten", "beschreibung": "Ein Klecks Sauce wird mit Schwung (oder einem Löffelaufschlag) auf den Teller 'gespritzt'.", "details": "Wirkt wie ein Action-Painting." },
+        { "code": "A-CARPET", "name": "Teppich", "kategorie": "Anrichten", "beschreibung": "Flächiges Auslegen des Tellers mit dünnen Scheiben (Carpaccio).", "details": "Der Teller ist fast vollständig bedeckt." },
+        { "code": "A-BRANCH", "name": "Bouquet / Sträußchen", "kategorie": "Anrichten", "beschreibung": "Kräuter oder Sprossen werden aufrecht wie ein kleiner Strauß in ein Püree gesteckt.", "details": "Gibt vertikale Höhe." },
+        { "code": "A-PEARL", "name": "Perlen / Kaviar", "kategorie": "Anrichten", "beschreibung": "Saucen, die mittels Spherifikation in Perlenform gebracht wurden.", "details": "Z.B. Balsamico-Perlen." },
+        { "code": "A-BRUSH", "name": "Pinselstrich", "kategorie": "Anrichten", "beschreibung": "Sauce wird mit einem Silikonpinsel über den Teller gestrichen.", "details": "Textur des Pinsels bleibt sichtbar." },
+        { "code": "A-LEAF", "name": "Blattgold / Silber", "kategorie": "Anrichten", "beschreibung": "Einsatz von hauchdünnem Echtgold zur Veredelung.", "details": "Geschmacksneutral, purer Luxus." },
+        { "code": "A-NEST", "name": "Nest", "kategorie": "Anrichten", "beschreibung": "Anrichten von Pasta oder Strohkartoffeln in Nestform.", "details": "Hohlraum in der Mitte kann gefüllt werden." },
+        { "code": "A-MINIMAL", "name": "Minimalismus", "kategorie": "Anrichten", "beschreibung": "Sehr wenige, aber perfekt platzierte Komponenten.", "details": "Viel freie Fläche auf dem Teller ('Negative Space')." },
+        { "code": "A-COLOR", "name": "Color-Blocking", "kategorie": "Anrichten", "beschreibung": "Anordnen von Komponenten mit starkem Farbkontrast.", "details": "Z.B. schwarzer Teller, weiße Sauce, rote Bete." },
+        { "code": "A-TWEEZ", "name": "Pinzetten-Salat", "kategorie": "Anrichten", "beschreibung": "Jedes Blatt Salat wird einzeln mit der Pinzette stehend angerichtet.", "details": "Maximale Luftigkeit und Volumen." },
+        { "code": "A-RIM", "name": "Tellerrand-Deko", "kategorie": "Anrichten", "beschreibung": "Bestreuen des Rands mit Gewürzen oder Kräutern.", "details": "Heute eher verpönt, klassisch aber verbreitet." },
+        { "code": "A-BUTTER", "name": "Butter-Locken", "kategorie": "Anrichten", "beschreibung": "Mit dem Butterroller geformte Locken.", "details": "Klassische Beigabe zum Brotgedeck." },
+        { "code": "A-ICE", "name": "Crushed Ice Bett", "kategorie": "Anrichten", "beschreibung": "Servieren von Austern oder Kaviar auf Eis.", "details": "Dient der Kühlung und Optik." },
+        { "code": "A-WOOD", "name": "Rustikaler Stil", "kategorie": "Anrichten", "beschreibung": "Servieren auf Holzbrettern, Schiefer oder Stein.", "details": "Passend für Steak oder Käse." },
+        { "code": "A-TEMP", "name": "Temperaturspiel", "kategorie": "Anrichten", "beschreibung": "Gezieltes Platzieren von eiskalten neben sehr heißen Elementen.", "details": "Spannendes Erlebnis im Mund." },
+        { "code": "A-GLAZE", "name": "Abglänzen", "kategorie": "Anrichten", "beschreibung": "Bestreichen von Fleisch oder Gebäck mit Fond/Fett für mehr Glanz.", "details": "Verhindert stumpfes Aussehen unter dem Pass-Licht." },
+        { "code": "A-MICRO", "name": "Micro-Greens", "kategorie": "Anrichten", "beschreibung": "Einsatz von extrem kleinen Keimlingen (Kresse, Shiso).", "details": "Viel Geschmack auf kleinem Raum." },
+        { "code": "A-ASYM", "name": "Asymmetrie", "kategorie": "Anrichten", "beschreibung": "Bewusstes Ungleichgewicht beim Anrichten.", "details": "Wirkt natürlicher und weniger statisch." },
+        { "code": "A-FINISH", "name": "Finish am Gast", "kategorie": "Anrichten", "beschreibung": "Sauce wird erst am Tisch vom Service angegossen.", "details": "Interaktives Erlebnis und Schutz der Textur." }
+
+    ]
