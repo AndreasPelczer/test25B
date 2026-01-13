@@ -26,6 +26,8 @@ extension Auftrag {
     @NSManaged public var storageNote: String?
     @NSManaged public var totalProcessingTime: Double
     @NSManaged public var event: Event?
+    @NSManaged public var extras: String?
+
 
 }
 

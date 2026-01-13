@@ -29,6 +29,14 @@ struct EditJobView: View {
         _storageNote = State(initialValue: job.storageNote ?? "1/1 Schwarz")
     }
     
+    private var displayTitle: String {
+        // Wenn es KEIN title-Feld gibt, nehmen wir processingDetails oder zur Not "Auftrag"
+        if let d = job.processingDetails, !d.isEmpty { return d }
+        if let n = job.employeeName, !n.isEmpty { return "Auftrag für \(n)" }
+        return "Auftrag"
+    }
+
+    
     var body: some View {
         NavigationView {
             Form {

@@ -117,7 +117,6 @@ struct EventDetailView: View {
             extras = loadExtras()
         }
         .sheet(isPresented: $showingEditSheet, onDismiss: {
-            // falls du nach Edit eine frische Anzeige willst
             refreshID = UUID()
         }) {
             EditEventView(event: event)
@@ -128,7 +127,6 @@ struct EventDetailView: View {
             AddJobView(event: event, viewContext: viewContext)
         }
         .sheet(isPresented: $showingKnowledgeSheet, onDismiss: {
-            // nach Pins speichern neu laden
             extras = loadExtras()
         }) {
             KnowledgePinSheet(
@@ -168,7 +166,6 @@ struct EventDetailView: View {
 
                 Spacer()
 
-                // kleine Progress-Anzeige (Checkliste)
                 VStack(alignment: .trailing, spacing: 4) {
                     Text("\(Int(checklistProgress * 100))%")
                         .font(.headline.monospacedDigit())
@@ -178,7 +175,6 @@ struct EventDetailView: View {
                 }
             }
 
-            // Zeitplan + dynamischer Balken
             VStack(alignment: .leading, spacing: 8) {
                 if let setup = event.setupTime {
                     timeRow(icon: "timer", title: "Setup", date: setup, color: .orange)
@@ -230,7 +226,6 @@ struct EventDetailView: View {
                     .font(.headline)
                 Spacer()
 
-                // Vorlagen (schnell)
                 Menu {
                     Button("Buffet aufbauen (Vorlage)") { addTemplateBuffet() }
                     Button("Schnitzel-Garen (Vorlage)") { addTemplateSchnitzel() }
@@ -246,9 +241,8 @@ struct EventDetailView: View {
                 }
             }
 
-            // Add Step
             HStack(spacing: 10) {
-                TextField("Neuer Schritt… (z.B. GN-Bleche richten)", text: $newStepText)
+                TextField("Neuer Schritt…", text: $newStepText)
                     .textFieldStyle(.roundedBorder)
 
                 Button {
@@ -260,7 +254,6 @@ struct EventDetailView: View {
                 .disabled(newStepText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
             }
 
-            // Progress line
             HStack {
                 Text("\(checklistDoneCount)/\(checklistTotalCount) erledigt")
                     .font(.caption)
@@ -272,9 +265,8 @@ struct EventDetailView: View {
                     .frame(width: 140)
             }
 
-            // Checklist items
             if extras.checklist.isEmpty {
-                Text("Noch keine Schritte. Tippe oben einen Schritt ein oder nutze eine Vorlage.")
+                Text("Noch keine Schritte.")
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
                     .padding(.top, 4)
@@ -353,7 +345,6 @@ struct EventDetailView: View {
                     .foregroundStyle(.secondary)
                     .padding(.top, 2)
             } else {
-                // Wir verwenden hier weiter deine JobRowView (mit Status, Timer, Edit, etc.)
                 VStack(spacing: 10) {
                     ForEach(filteredJobs, id: \.objectID) { job in
                         JobRowView(job: job, onJobUpdated: {
@@ -388,15 +379,14 @@ struct EventDetailView: View {
                 }
             }
 
-            // Pinned Products
+            // HINWEIS: Diese Views müssen in einer anderen Datei definiert sein
             PinnedProductsSection(productIDs: extras.pinnedProductIDs)
                 .environment(\.managedObjectContext, viewContext)
 
-            // Pinned Lexikon
             PinnedLexikonSection(codes: extras.pinnedLexikonCodes)
                 .environment(\.managedObjectContext, viewContext)
 
-            Text("Tipp: Pinne Produkte (Rezepte/Algorithmus) und Lexikon (Techniken/Warenkunde), damit du im Event sofort Zugriff hast.")
+            Text("Tipp: Pinne Produkte und Lexikon-Einträge für schnellen Zugriff.")
                 .font(.caption)
                 .foregroundStyle(.secondary)
                 .padding(.top, 2)
@@ -414,7 +404,6 @@ struct EventDetailView: View {
         do {
             return try JSONDecoder().decode(EventExtrasPayload.self, from: data)
         } catch {
-            // Falls mal altes Format drin ist: einfach neu starten
             return EventExtrasPayload()
         }
     }
@@ -433,7 +422,6 @@ struct EventDetailView: View {
     private func addChecklistItem(title: String) {
         let t = title.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !t.isEmpty else { return }
-
         extras.checklist.append(ChecklistItem(title: t))
         newStepText = ""
         saveExtras(extras)
@@ -450,68 +438,41 @@ struct EventDetailView: View {
         saveExtras(extras)
     }
 
-    // MARK: - Templates
     private func addTemplateBuffet() {
-        let steps = [
-            "Buffet-Plan prüfen / Menü bestätigen",
-            "GN-Bleche zählen & bereitstellen",
-            "Warmhaltegeräte / Strom / Wasser checken",
-            "Beschriftung / Allergene bereitstellen",
-            "Aufbau Reihenfolge festlegen",
-            "Finale Kontrolle + Foto (RCA-ready)"
-        ]
+        let steps = ["Buffet-Plan prüfen", "GN-Bleche bereitstellen", "Warmhaltegeräte checken", "Beschriftung bereitstellen", "Finale Kontrolle"]
         for s in steps { extras.checklist.append(ChecklistItem(title: s)) }
         saveExtras(extras)
     }
 
     private func addTemplateSchnitzel() {
-        let steps = [
-            "Schnitzel portionieren / mise en place",
-            "Panierstraße aufbauen (Mehl/Ei/Brösel)",
-            "GN-Bleche vorbereiten (Papier/Öl)",
-            "Schnitzel auf Bleche legen (Abstand!)",
-            "In Hortenwagen einschieben",
-            "In KH3 abstellen / beschriften",
-            "Garparameter / Zeiten notieren"
-        ]
+        let steps = ["Schnitzel portionieren", "Panierstraße aufbauen", "GN-Bleche vorbereiten", "Garparameter notieren"]
         for s in steps { extras.checklist.append(ChecklistItem(title: s)) }
         saveExtras(extras)
     }
 }
 
 // -------------------------------------------------------------
-// MARK: - ZEIT-FORTSCHRITT (aus deinem bestehenden Code übernommen)
+// MARK: - ZEIT-FORTSCHRITT HELPERS
 // -------------------------------------------------------------
 struct EventTimeProgress {
     let event: Event
-
     var progressRatio: Double {
-        guard let setupTime = event.setupTime,
-              let endTime = event.eventEndTime,
-              setupTime < endTime else { return 0.0 }
-
+        guard let setupTime = event.setupTime, let endTime = event.eventEndTime, setupTime < endTime else { return 0.0 }
         let totalDuration = endTime.timeIntervalSince(setupTime)
         let elapsedTime = Date().timeIntervalSince(setupTime)
         return min(1.0, max(0.0, elapsedTime / totalDuration))
     }
-
     var statusText: String {
-        guard let setupTime = event.setupTime,
-              let endTime = event.eventEndTime else { return "Zeitdaten unvollständig" }
-
+        guard let setupTime = event.setupTime, let endTime = event.eventEndTime else { return "Zeit unvollständig" }
         let now = Date()
         if now < setupTime { return "Geplant" }
         if now >= endTime { return "Beendet" }
-
-        let percentage = Int(progressRatio * 100)
-        return "Im Gange (\(percentage)%)"
+        return "Im Gange (\(Int(progressRatio * 100))%)"
     }
-
     var progressColor: Color {
         let now = Date()
         if let setupTime = event.setupTime, now < setupTime { return .blue }
-        if progressRatio >= 1.0 { return .green }
-        return .orange
+        return progressRatio >= 1.0 ? .green : .orange
     }
 }
 
@@ -519,180 +480,35 @@ struct EventTimelineBar: View {
     @ObservedObject var event: Event
     @State private var now = Date()
     let timer = Timer.publish(every: 60, on: .main, in: .common).autoconnect()
-
     var progressData: EventTimeProgress { EventTimeProgress(event: event) }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
-            Text("Event-Status: \(progressData.statusText)")
-                .font(.caption)
-                .foregroundColor(.secondary)
-
+            Text("Event-Status: \(progressData.statusText)").font(.caption).foregroundColor(.secondary)
             GeometryReader { geometry in
                 ZStack(alignment: .leading) {
-                    RoundedRectangle(cornerRadius: 6)
-                        .fill(Color(.systemGray5))
-                        .frame(height: 10)
-
-                    RoundedRectangle(cornerRadius: 6)
-                        .fill(progressData.progressColor)
+                    RoundedRectangle(cornerRadius: 6).fill(Color(.systemGray5)).frame(height: 10)
+                    RoundedRectangle(cornerRadius: 6).fill(progressData.progressColor)
                         .frame(width: geometry.size.width * CGFloat(progressData.progressRatio), height: 10)
                         .animation(.linear, value: progressData.progressRatio)
                 }
             }
             .frame(height: 10)
         }
-        .onReceive(timer) { _ in
-            now = Date()
-        }
+        .onReceive(timer) { _ in now = Date() }
     }
 }
 
 // -------------------------------------------------------------
-// MARK: - WISSEN: Pins anzeigen + Sheet zum Suchen/Anpinnen
+// MARK: - KNOWLEDGE SHEET & DETAILS
 // -------------------------------------------------------------
 
-private struct PinnedProductsSection: View {
-    @Environment(\.managedObjectContext) private var ctx
-    let productIDs: [String]
-
-    @State private var products: [CDProduct] = []
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text("Produkte")
-                .font(.subheadline.weight(.semibold))
-                .foregroundStyle(.secondary)
-
-            if products.isEmpty {
-                Text(productIDs.isEmpty ? "Keine Produkte gepinnt." : "Lade Produkte…")
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
-            } else {
-                ForEach(products, id: \.objectID) { p in
-                    NavigationLink {
-                        ProductPinnedDetailView(product: p)
-                    } label: {
-                        HStack {
-                            VStack(alignment: .leading, spacing: 2) {
-                                Text(p.name ?? "Produkt")
-                                    .font(.body.weight(.semibold))
-                                Text(p.category ?? "")
-                                    .font(.caption)
-                                    .foregroundStyle(.secondary)
-                            }
-                            Spacer()
-                            Image(systemName: "chevron.right")
-                                .font(.caption)
-                                .foregroundStyle(.secondary)
-                        }
-                        .padding(10)
-                        .background(.thinMaterial)
-                        .clipShape(RoundedRectangle(cornerRadius: 12))
-                    }
-                }
-            }
-        }
-        .onAppear { fetchPinnedProducts() }
-        .onChange(of: productIDs) { _ in fetchPinnedProducts() }
-    }
-
-    private func fetchPinnedProducts() {
-        guard !productIDs.isEmpty else {
-            products = []
-            return
-        }
-
-        let req: NSFetchRequest<CDProduct> = CDProduct.fetchRequest()
-        req.predicate = NSPredicate(format: "id IN %@", productIDs)
-        req.fetchLimit = 50
-
-        do {
-            let fetched = try ctx.fetch(req)
-            // gleiche Reihenfolge wie productIDs
-            let byId = Dictionary(uniqueKeysWithValues: fetched.compactMap { ($0.id ?? "", $0) })
-            products = productIDs.compactMap { byId[$0] }
-        } catch {
-            products = []
-        }
-    }
-}
-
-private struct PinnedLexikonSection: View {
-    @Environment(\.managedObjectContext) private var ctx
-    let codes: [String]
-
-    @State private var entries: [CDLexikonEntry] = []
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text("Lexikon")
-                .font(.subheadline.weight(.semibold))
-                .foregroundStyle(.secondary)
-
-            if entries.isEmpty {
-                Text(codes.isEmpty ? "Keine Lexikon-Einträge gepinnt." : "Lade Lexikon…")
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
-            } else {
-                ForEach(entries, id: \.objectID) { e in
-                    NavigationLink {
-                        LexikonPinnedDetailView(entry: e)
-                    } label: {
-                        HStack {
-                            VStack(alignment: .leading, spacing: 2) {
-                                Text(e.name ?? "Eintrag")
-                                    .font(.body.weight(.semibold))
-                                Text(e.kategorie ?? "Fachbuch")
-                                    .font(.caption)
-                                    .foregroundStyle(.secondary)
-                            }
-                            Spacer()
-                            Text(e.code ?? "")
-                                .font(.caption.monospaced())
-                                .foregroundStyle(.secondary)
-                        }
-                        .padding(10)
-                        .background(.thinMaterial)
-                        .clipShape(RoundedRectangle(cornerRadius: 12))
-                    }
-                }
-            }
-        }
-        .onAppear { fetchPinnedLexikon() }
-        .onChange(of: codes) { _ in fetchPinnedLexikon() }
-    }
-
-    private func fetchPinnedLexikon() {
-        guard !codes.isEmpty else {
-            entries = []
-            return
-        }
-
-        let req: NSFetchRequest<CDLexikonEntry> = CDLexikonEntry.fetchRequest()
-        req.predicate = NSPredicate(format: "code IN %@", codes)
-        req.fetchLimit = 50
-
-        do {
-            let fetched = try ctx.fetch(req)
-            let byCode = Dictionary(uniqueKeysWithValues: fetched.compactMap { ($0.code ?? "", $0) })
-            entries = codes.compactMap { byCode[$0] }
-        } catch {
-            entries = []
-        }
-    }
-}
-
-// MARK: - Sheet: Knowledge suchen & pinnen
 struct KnowledgePinSheet: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.managedObjectContext) private var ctx
-
     @Binding var pinnedProductIDs: [String]
     @Binding var pinnedLexikonCodes: [String]
-
     var onSave: () -> Void
-
     @State private var searchText: String = ""
     @State private var foundProducts: [CDProduct] = []
     @State private var foundLexikon: [CDLexikonEntry] = []
@@ -700,226 +516,116 @@ struct KnowledgePinSheet: View {
     var body: some View {
         NavigationView {
             VStack(spacing: 12) {
-                TextField("Suchen (Produktname oder Lexikon-Code/Name)…", text: $searchText)
-                    .textFieldStyle(.roundedBorder)
-                    .padding(.horizontal)
-                    .onChange(of: searchText) { _ in
-                        runSearch()
-                    }
+                TextField("Suchen…", text: $searchText)
+                    .textFieldStyle(.roundedBorder).padding(.horizontal)
+                    .onChange(of: searchText) { _ in runSearch() }
 
                 List {
                     if !foundProducts.isEmpty {
                         Section("Produkte") {
                             ForEach(foundProducts, id: \.objectID) { p in
                                 HStack {
-                                    VStack(alignment: .leading, spacing: 2) {
+                                    VStack(alignment: .leading) {
                                         Text(p.name ?? "Produkt")
-                                        Text(p.category ?? "")
-                                            .font(.caption)
-                                            .foregroundStyle(.secondary)
+                                        Text(p.category ?? "").font(.caption).foregroundStyle(.secondary)
                                     }
                                     Spacer()
-                                    Button {
-                                        pinProduct(p)
-                                    } label: {
+                                    Button { pinProduct(p) } label: {
                                         Image(systemName: pinnedProductIDs.contains(p.id ?? "") ? "pin.fill" : "pin")
-                                    }
-                                    .buttonStyle(.plain)
+                                    }.buttonStyle(.plain)
                                 }
                             }
                         }
                     }
-
                     if !foundLexikon.isEmpty {
                         Section("Lexikon") {
                             ForEach(foundLexikon, id: \.objectID) { e in
                                 HStack {
-                                    VStack(alignment: .leading, spacing: 2) {
+                                    VStack(alignment: .leading) {
                                         Text(e.name ?? "Eintrag")
-                                        Text(e.kategorie ?? "Fachbuch")
-                                            .font(.caption)
-                                            .foregroundStyle(.secondary)
+                                        Text(e.kategorie ?? "").font(.caption).foregroundStyle(.secondary)
                                     }
                                     Spacer()
-                                    Text(e.code ?? "")
-                                        .font(.caption.monospaced())
-                                        .foregroundStyle(.secondary)
-                                    Button {
-                                        pinLexikon(e)
-                                    } label: {
+                                    Button { pinLexikon(e) } label: {
                                         Image(systemName: pinnedLexikonCodes.contains(e.code ?? "") ? "pin.fill" : "pin")
-                                    }
-                                    .buttonStyle(.plain)
+                                    }.buttonStyle(.plain)
                                 }
                             }
-                        }
-                    }
-
-                    if foundProducts.isEmpty && foundLexikon.isEmpty {
-                        Section {
-                            Text("Tippe oben einen Begriff. Beispiele: „Schnitzel“, „GN“, „HACCP“, „10050“")
-                                .foregroundStyle(.secondary)
                         }
                     }
                 }
             }
             .navigationTitle("Wissen pinnen")
             .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button("Schließen") {
-                        onSave()
-                        dismiss()
-                    }
-                }
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Speichern") {
-                        onSave()
-                        dismiss()
-                    }
-                }
+                ToolbarItem(placement: .navigationBarLeading) { Button("Schließen") { onSave(); dismiss() } }
+                ToolbarItem(placement: .navigationBarTrailing) { Button("Speichern") { onSave(); dismiss() } }
             }
-            .onAppear {
-                runSearch()
-            }
+            .onAppear { runSearch() }
         }
     }
 
     private func runSearch() {
         let q = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
-
-        // Produkte
         let pReq: NSFetchRequest<CDProduct> = CDProduct.fetchRequest()
-        if !q.isEmpty {
-            pReq.predicate = NSPredicate(format: "name CONTAINS[cd] %@ OR category CONTAINS[cd] %@", q, q)
-        }
-        pReq.fetchLimit = 30
-
-        // Lexikon
+        if !q.isEmpty { pReq.predicate = NSPredicate(format: "name CONTAINS[cd] %@", q) }
+        pReq.fetchLimit = 20
         let lReq: NSFetchRequest<CDLexikonEntry> = CDLexikonEntry.fetchRequest()
-        if !q.isEmpty {
-            lReq.predicate = NSPredicate(format: "name CONTAINS[cd] %@ OR code CONTAINS[cd] %@ OR kategorie CONTAINS[cd] %@", q, q, q)
-        }
-        lReq.fetchLimit = 30
-
-        do { foundProducts = try ctx.fetch(pReq) } catch { foundProducts = [] }
-        do { foundLexikon = try ctx.fetch(lReq) } catch { foundLexikon = [] }
+        if !q.isEmpty { lReq.predicate = NSPredicate(format: "name CONTAINS[cd] %@", q) }
+        lReq.fetchLimit = 20
+        do { foundProducts = try ctx.fetch(pReq); foundLexikon = try ctx.fetch(lReq) } catch { }
     }
 
     private func pinProduct(_ p: CDProduct) {
-        guard let id = p.id, !id.isEmpty else { return }
-        if pinnedProductIDs.contains(id) {
-            pinnedProductIDs.removeAll { $0 == id }
-        } else {
-            pinnedProductIDs.append(id)
-        }
+        guard let id = p.id else { return }
+        if pinnedProductIDs.contains(id) { pinnedProductIDs.removeAll { $0 == id } } else { pinnedProductIDs.append(id) }
     }
 
     private func pinLexikon(_ e: CDLexikonEntry) {
-        guard let code = e.code, !code.isEmpty else { return }
-        if pinnedLexikonCodes.contains(code) {
-            pinnedLexikonCodes.removeAll { $0 == code }
-        } else {
-            pinnedLexikonCodes.append(code)
-        }
+        guard let code = e.code else { return }
+        if pinnedLexikonCodes.contains(code) { pinnedLexikonCodes.removeAll { $0 == code } } else { pinnedLexikonCodes.append(code) }
     }
 }
 
-// MARK: - Simple Detail Views für Pins (modern, ruhig)
 private struct ProductPinnedDetailView: View {
     @ObservedObject var product: CDProduct
-
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
-                header
-
-                if let b = product.beschreibung, !b.isEmpty {
-                    infoCard(title: "Beschreibung", text: b)
-                }
-                if let algo = product.algorithmusText, !algo.isEmpty {
-                    infoCard(title: "Anweisungen (Algorithmus)", text: algo)
-                }
-                if let a = product.allergene, !a.isEmpty || (product.zusatzstoffe?.isEmpty == false) {
-                    infoCard(title: "Allergene / Zusatzstoffe", text: "\(product.allergene ?? "")\n\(product.zusatzstoffe ?? "")")
-                }
-            }
-            .padding()
+                VStack(alignment: .leading) {
+                    Text(product.name ?? "").font(.title2.bold())
+                    Text(product.category ?? "").foregroundStyle(.secondary)
+                }.padding().background(.ultraThinMaterial).clipShape(RoundedRectangle(cornerRadius: 16))
+                
+                if let b = product.beschreibung { infoCard(title: "Beschreibung", text: b) }
+            }.padding()
         }
-        .navigationTitle(product.name ?? "Produkt")
-        .navigationBarTitleDisplayMode(.inline)
     }
-
-    private var header: some View {
-        VStack(alignment: .leading, spacing: 6) {
-            Text(product.name ?? "Produkt")
-                .font(.title2.bold())
-            Text(product.category ?? "")
-                .font(.footnote)
-                .foregroundStyle(.secondary)
-            Text(product.dataSource ?? "")
-                .font(.caption)
-                .foregroundStyle(.secondary)
-        }
-        .padding()
-        .background(.ultraThinMaterial)
-        .clipShape(RoundedRectangle(cornerRadius: 16))
-    }
-
     private func infoCard(title: String, text: String) -> some View {
         VStack(alignment: .leading, spacing: 8) {
             Text(title).font(.headline)
             Text(text).foregroundStyle(.secondary)
-        }
-        .padding()
-        .background(Color(.secondarySystemBackground))
-        .clipShape(RoundedRectangle(cornerRadius: 14))
+        }.padding().background(Color(.secondarySystemBackground)).clipShape(RoundedRectangle(cornerRadius: 14))
     }
 }
 
 private struct LexikonPinnedDetailView: View {
     @ObservedObject var entry: CDLexikonEntry
-
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
-                header
-
-                if let b = entry.beschreibung, !b.isEmpty {
-                    infoCard(title: "Beschreibung", text: b)
-                }
-                if let d = entry.details, !d.isEmpty {
-                    infoCard(title: "Details", text: d)
-                }
-            }
-            .padding()
+                VStack(alignment: .leading) {
+                    Text(entry.name ?? "").font(.title2.bold())
+                    Text(entry.kategorie ?? "").foregroundStyle(.secondary)
+                }.padding().background(.ultraThinMaterial).clipShape(RoundedRectangle(cornerRadius: 16))
+                
+                if let b = entry.beschreibung { infoCard(title: "Beschreibung", text: b) }
+            }.padding()
         }
-        .navigationTitle(entry.name ?? "Lexikon")
-        .navigationBarTitleDisplayMode(.inline)
     }
-
-    private var header: some View {
-        VStack(alignment: .leading, spacing: 6) {
-            Text(entry.name ?? "Eintrag")
-                .font(.title2.bold())
-            Text(entry.kategorie ?? "Fachbuch")
-                .font(.footnote)
-                .foregroundStyle(.secondary)
-            Text(entry.code ?? "")
-                .font(.caption.monospaced())
-                .foregroundStyle(.secondary)
-        }
-        .padding()
-        .background(.ultraThinMaterial)
-        .clipShape(RoundedRectangle(cornerRadius: 16))
-    }
-
     private func infoCard(title: String, text: String) -> some View {
         VStack(alignment: .leading, spacing: 8) {
             Text(title).font(.headline)
             Text(text).foregroundStyle(.secondary)
-        }
-        .padding()
-        .background(Color(.secondarySystemBackground))
-        .clipShape(RoundedRectangle(cornerRadius: 14))
+        }.padding().background(Color(.secondarySystemBackground)).clipShape(RoundedRectangle(cornerRadius: 14))
     }
 }

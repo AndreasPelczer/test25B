@@ -4,6 +4,7 @@
     <entity name="Auftrag" representedClassName=".Auftrag" syncable="YES">
         <attribute name="deliveryTemperature" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="employeeName" optional="YES" attributeType="String"/>
+        <attribute name="extras" optional="YES" attributeType="String" defaultValueString=""/>
         <attribute name="isCompleted" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="lastStartTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="processingDetails" optional="YES" attributeType="String"/>
