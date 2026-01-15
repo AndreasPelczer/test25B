@@ -1,26 +1,35 @@
-//
-//  test25B
-//
-//  Created by Andreas Pelczer on 15.12.25.
-//
-// ViewModels/AddJobViewModel.swift
-
 import Foundation
 import CoreData
 
-class AddJobViewModel: ObservableObject {
-    private var viewContext: NSManagedObjectContext
-    var event: Event // Das Event, dem der neue Job zugeordnet wird
-    
-    // Die @Published Properties spiegeln die @State Variablen aus der View wider
-    @Published var employeeName: String = ""
-    @Published var jobStatus: JobStatus = .pending
-    @Published var storageLocation: String
-    @Published var processingDetails: String = ""
-    @Published var isHotDelivery: Bool = false
-    @Published var storageNote: String
+final class AddJobViewModel: ObservableObject {
+    private let viewContext: NSManagedObjectContext
+    let event: Event
 
-    // Globale Konstanten (könnten in einen separaten Service verschoben werden, bleiben hier aber für die Einfachheit)
+    // MARK: - Zettelkopf (oben am Papier)
+    @Published var orderNumber: String = ""        // 9779-04
+    @Published var station: String = ""            // Torhaus E2
+    @Published var deadline: Date = Date()         // Uhrzeit
+    @Published var hasDeadline: Bool = true
+    @Published var persons: Int = 0                // Personen/Portionen
+
+    // MARK: - Zuweisung (optional)
+    @Published var employeeName: String = ""
+
+    // MARK: - Status
+    @Published var jobStatus: JobStatus = .pending
+
+    // MARK: - „Zettel-Body“
+    // Kurzer Auftragstext (das, was du aktuell als processingDetails nutzt)
+    @Published var taskSummary: String = ""        // z.B. "Bulgur 6x Rezept, 10:30 schicken"
+
+    // Produktionspositionen (wie auf dem Zettel)
+    @Published var lineItems: [AuftragLineItem] = []
+
+    // MARK: - Behälter / Lager (deine existierenden Felder)
+    @Published var storageLocation: String
+    @Published var storageNote: String
+    @Published var isHotDelivery: Bool = false
+
     let storageLocations = [
         "FischKühlhaus", "Molkerei", "Fleisch", "Bereitstelle",
         "VorkühlerFk", "TK OG", "TK Fingerfood", "TK Logistik Nord"
@@ -30,59 +39,78 @@ class AddJobViewModel: ObservableObject {
         "1/1 Silber 10er", "1/1 Silber 6,5 cm", "30cm 1/2 Silber 10,30"
     ]
 
+    // MARK: - SOP Template
+    @Published var trainingMode: Bool = false 
+    @Published var selectedTemplate: AuftragTemplate? = nil
+
     init(event: Event, context: NSManagedObjectContext) {
         self.event = event
         self.viewContext = context
-        
-        // Initialisiere die Picker-Werte
-        self.storageLocation = storageLocations[0]
-        self.storageNote = storageNotes[0]
+
+        self.storageLocation = storageLocations.first ?? ""
+        self.storageNote = storageNotes.first ?? ""
     }
-    
-    /**
-     * 💾 Erstellt ein neues Core Data Objekt 'Auftrag' und speichert es im Kontext.
-     *
-     * @return True, wenn der Speichervorgang erfolgreich war.
-     */
+
+    // MARK: - Helpers
+    func addLineItem() {
+        lineItems.append(AuftragLineItem(title: ""))
+    }
+
+    func removeLineItem(_ item: AuftragLineItem) {
+        lineItems.removeAll { $0.id == item.id }
+    }
+
+    var isSaveButtonDisabled: Bool {
+        // Minimal: ohne “Was ist zu tun?” speichern wir keinen Auftrag
+        taskSummary.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+    }
+
+    // MARK: - Save
     func saveNewJob() -> Bool {
-        // Kommentar: Erstellung des Core Data Objekts im Context
         let newJob = Auftrag(context: viewContext)
-        
-        // Kommentar: Zuweisung der UI-Daten aus dem ViewModel
+
+        // CoreData-Felder, die es bei dir gibt:
         newJob.employeeName = employeeName
         newJob.storageLocation = storageLocation
-        newJob.processingDetails = processingDetails
-        newJob.deliveryTemperature = isHotDelivery
         newJob.storageNote = storageNote
-        
-        // Kommentar: Status- und Abschluss-Logik
+        newJob.deliveryTemperature = isHotDelivery
+
+        // “Was ist zu tun?” → in processingDetails (damit Row/Listen was zeigen)
+        newJob.processingDetails = taskSummary
+
         newJob.status = jobStatus
         newJob.isCompleted = (jobStatus == .completed)
-        
-        // Kommentar: Zuordnung zum Event
-        newJob.event = self.event
-        
-        // Kommentar: Standardwerte für den neuen Timer (müssen gesetzt werden)
+        newJob.event = event
+
         newJob.totalProcessingTime = 0.0
         newJob.lastStartTime = nil
-        
+
+        // ✅ Extras (Zettelkopf + Positionen + SOP)
+        var extras = AuftragExtrasPayload()
+        extras.trainingMode = trainingMode
+        extras.orderNumber = orderNumber
+        extras.station = station
+        extras.persons = persons
+        extras.deadline = hasDeadline ? deadline : nil
+
+        // Positionen: leere Titel rausfiltern
+        extras.lineItems = lineItems.filter {
+            !$0.title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+        }
+
+        // SOP aus Template (optional)
+        if let tpl = selectedTemplate {
+            extras.checklist = tpl.steps.map { AuftragChecklistItem(title: $0) }
+        }
+
+        newJob.extras = extras.toJSONString()
+
         do {
             try viewContext.save()
-            // Kommentar: Erfolg
             return true
         } catch {
-            // Kommentar: Fehlerbehandlung, ohne die App zum Absturz zu bringen
-            print("❌ Fehler beim Speichern des neuen Auftrags: \(error.localizedDescription)")
+            print("❌ Fehler beim Speichern des neuen Auftrags: \(error)")
             return false
         }
-    }
-    
-    /**
-     * ⚙️ Prüft, ob der Speichern-Button aktiviert werden soll.
-     *
-     * @return True, wenn der Mitarbeitername nicht leer ist.
-     */
-    var isSaveButtonDisabled: Bool {
-        return employeeName.trimmingCharacters(in: .whitespaces).isEmpty
     }
 }

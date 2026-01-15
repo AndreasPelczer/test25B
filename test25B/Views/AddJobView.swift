@@ -1,89 +1,150 @@
-// Views/AddJobView.swift (NEU: Reine UI-View)
-
 import SwiftUI
 import CoreData
 
 struct AddJobView: View {
-    @Environment(\.dismiss) var dismiss
-    @Environment(\.managedObjectContext) var viewContext
-    
-    // 💡 Das ViewModel hält alle Daten und die save-Logik
-    @StateObject var viewModel: AddJobViewModel
-    
-    // Initializer, um das ViewModel zu erstellen und das Event zu übergeben
+    @Environment(\.dismiss) private var dismiss
+    @Environment(\.managedObjectContext) private var viewContext
+
+    @StateObject private var viewModel: AddJobViewModel
+
     init(event: Event, viewContext: NSManagedObjectContext) {
-        // Kommentar: ViewModel wird beim Initialisieren der View erstellt
         _viewModel = StateObject(wrappedValue: AddJobViewModel(event: event, context: viewContext))
     }
-    
+
     var body: some View {
         NavigationView {
             Form {
+
+                
+                // Zettelkopf
+                Section("Zettelkopf") {
+                    TextField("Auftragsnummer (9779-04)", text: $viewModel.orderNumber)
+                        .textInputAutocapitalization(.never)
+
+                    TextField("Station/Ort (Torhaus E2)", text: $viewModel.station)
+
+                    HStack {
+                        Stepper(value: $viewModel.persons, in: 0...5000) {
+                            Text("Personen")
+                        }
+                        Spacer()
+                        Text(viewModel.persons == 0 ? "—" : "\(viewModel.persons)")
+                            .foregroundStyle(.secondary)
+                            .monospacedDigit()
+                    }
+
+                    HStack {
+                        Toggle("Deadline", isOn: $viewModel.hasDeadline)
+                        if viewModel.hasDeadline {
+                            DatePicker("", selection: $viewModel.deadline, displayedComponents: [.hourAndMinute])
+                                .labelsHidden()
+                        }
+                    }
+                }
+
+
+                // 2) WAS IST ZU TUN? (1 Satz wie auf dem Zettel)
+                Section("Was ist zu tun?") {
+                    TextField("z.B. Bulgur 6× Rezept – 10:30 schicken", text: $viewModel.taskSummary)
+                        .font(.headline)
+                }
+                // 3) PRODUKTIONSPOSITIONEN (wie auf Papier)
                 Section {
-                    // Kommentar: Bindung an die @Published Properties des ViewModels
-                    TextField("Mitarbeitername", text: $viewModel.employeeName)
-                    
-                    // Picker für Status
+                    if viewModel.lineItems.isEmpty {
+                        Text("Noch keine Positionen. Tippe auf „Position hinzufügen“.")
+                            .foregroundStyle(.secondary)
+                    }
+
+                    ForEach($viewModel.lineItems) { $item in
+                        VStack(alignment: .leading, spacing: 8) {
+                            TextField("Position (z.B. Bulgur, Chili, Wurst…)", text: $item.title)
+
+                            HStack {
+                                TextField("Menge", text: $item.amount)
+                                    .frame(maxWidth: 90)
+                                TextField("Einheit (z.B. Rezept/GN/Port.)", text: $item.unit)
+                            }
+                            HStack(spacing: 8) {
+                                Button("Rezept") { item.unit = "Rezept" }
+                                Button("Port.") { item.unit = "Port." }
+                                Button("GN 1/1") { item.unit = "GN 1/1" }
+                            }
+                            .font(.caption)
+                            .buttonStyle(.bordered)
+
+
+                            TextField("Notiz (z.B. 12 Min Dampf, auflockern)", text: $item.note)
+                                .foregroundStyle(.secondary)
+                        }
+                        .swipeActions {
+                            Button(role: .destructive) {
+                                viewModel.removeLineItem(item)
+                            } label: {
+                                Label("Löschen", systemImage: "trash")
+                            }
+                        }
+                    }
+
+                    Button {
+                        viewModel.addLineItem()
+                    } label: {
+                        Label("Position hinzufügen", systemImage: "plus.circle.fill")
+                    }
+                } header: {
+                    Text("Produktionsliste (Positionen)")
+                }
+
+                // 4) SOP / MODUS / TEMPLATE
+                Section("Modus & Vorlage") {
+                    Toggle("Ausbildung (Schritte abhaken)", isOn: $viewModel.trainingMode)
+
+                    Picker("Vorlage", selection: $viewModel.selectedTemplate) {
+                        Text("Keine").tag(Optional<AuftragTemplate>.none)
+                        ForEach(AuftragTemplate.allCases) { tpl in
+                            Text(tpl.rawValue).tag(Optional(tpl))
+                        }
+                    }
+                }
+
+                // 5) ORGA (deine bestehenden Felder)
+                Section("Orga / Behälter / Auslieferung") {
+                    TextField("Mitarbeiter (optional)", text: $viewModel.employeeName)
+
                     Picker("Status", selection: $viewModel.jobStatus) {
-                        ForEach(JobStatus.allCases, id: \.self) { status in
-                            Text(status.rawValue).tag(status)
+                        ForEach(JobStatus.allCases, id: \.self) { s in
+                            Text(s.displayName).tag(s)
                         }
                     }
                     .pickerStyle(.menu)
-                    
-                    // Picker für Lagerort
-                    Picker("Lagerort auswählen", selection: $viewModel.storageLocation) {
-                        // Kommentar: Greift auf die Daten des ViewModels zu
-                        ForEach(viewModel.storageLocations, id: \.self) { location in
-                            Text(location)
+
+                    Picker("Lagerort", selection: $viewModel.storageLocation) {
+                        ForEach(viewModel.storageLocations, id: \.self) { loc in
+                            Text(loc)
                         }
                     }
                     .pickerStyle(.menu)
-                    
-                    // Picker für Lagerhinweis
-                    Picker("Lagerhinweis", selection: $viewModel.storageNote) {
+
+                    Picker("Behälter/Hinweis", selection: $viewModel.storageNote) {
                         ForEach(viewModel.storageNotes, id: \.self) { note in
                             Text(note)
                         }
                     }
                     .pickerStyle(.menu)
-                    
-                } header: {
-                    Text("Zuweisung & Ort")
-                }
-                
-                Section {
-                    TextEditor(text: $viewModel.processingDetails)
-                        .frame(minHeight: 100)
-                        .overlay(
-                            Text("Detaillierte Anweisung (z.B. '12 auf 1/1 Blech')")
-                                .foregroundColor(.gray)
-                                // Kommentar: Opazität nutzt die ViewModel Property
-                                .opacity(viewModel.processingDetails.isEmpty ? 1 : 0)
-                                .padding(.top, 8)
-                                .padding(.leading, 4),
-                            alignment: .topLeading
-                        )
-                    
+
                     Toggle("Heiß ausliefern?", isOn: $viewModel.isHotDelivery)
-                    
-                } header: {
-                    Text("Verarbeitung und Auslieferung")
                 }
             }
-            // Kommentar: Der Event-Titel wird über das ViewModel aus dem Event geholt
-            .navigationTitle("Neuer Auftrag für \(viewModel.event.title ?? "Event")")
+            .navigationTitle("Neuer Auftrag")
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button("Abbrechen") { dismiss() }
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Speichern") {
-                        if viewModel.saveNewJob() { // Kommentar: Speichern-Logik liegt im ViewModel
+                        if viewModel.saveNewJob() {
                             dismiss()
                         }
                     }
-                    // Kommentar: Deaktivierung nutzt die ViewModel Logik
                     .disabled(viewModel.isSaveButtonDisabled)
                 }
             }

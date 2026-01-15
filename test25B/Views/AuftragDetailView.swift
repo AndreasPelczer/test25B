@@ -22,24 +22,30 @@ struct AuftragDetailView: View {
         extras.checklist.first(where: { !$0.isDone })?.title
     }
 
-    private var displayTitle: String {
+    /// Zettel-Headline: Was ist zu tun?
+    private var whatToDoText: String {
         if let d = job.processingDetails, !d.isEmpty { return d }
-        if let n = job.employeeName, !n.isEmpty { return "Auftrag für \(n)" }
+        // Falls du später lineItems nutzt: erster Posten als Fallback
+        if let first = extras.lineItems.first?.title, !first.isEmpty { return first }
         return "Auftrag"
     }
+
 
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
-                headerCard
-                modeCard
-                checklistCard
-                knowledgeCard
+                jetztCard          // ✅ NEU – ganz oben
+                   productionListCard // kommt als Nächstes
+                   headerCard         // wird später weiter entschärft
+                   modeCard
+                   checklistCard
+                   knowledgeCard
                 Spacer(minLength: 8)
             }
+
             .padding()
         }
-        .navigationTitle(displayTitle)
+        .navigationTitle(whatToDoText)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
@@ -61,54 +67,115 @@ struct AuftragDetailView: View {
 
     // MARK: - UI Cards
 
-    private var headerCard: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            HStack(alignment: .top) {
-                VStack(alignment: .leading, spacing: 6) {
-                    Text(displayTitle)
-                        .font(.title2.bold())
-
-                    HStack(spacing: 10) {
-                        if let emp = job.employeeName, !emp.isEmpty {
-                            Label(emp, systemImage: "person.fill")
-                                .font(.footnote)
-                                .foregroundStyle(.secondary)
-                        }
-
-                        Label(job.isCompleted ? "Fertig" : "Offen",
-                              systemImage: job.isCompleted ? "checkmark.seal.fill" : "clock")
-                        .font(.footnote)
-                        .foregroundStyle(.secondary)
-                    }
-                }
+    private var progressCard: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            HStack {
+                Label(job.isCompleted ? "Fertig" : "Offen",
+                      systemImage: job.isCompleted ? "checkmark.seal.fill" : "clock")
+                .font(.footnote)
+                .foregroundStyle(.secondary)
 
                 Spacer()
 
-                VStack(alignment: .trailing, spacing: 4) {
-                    Text("\(Int(progress * 100))%")
-                        .font(.headline.monospacedDigit())
-                    Text("SOP")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                }
-            }
-
-            if extras.trainingMode, let next = nextOpenStepTitle, !job.isCompleted {
-                Text("➡️ Jetzt: \(next)")
-                    .font(.subheadline.weight(.semibold))
-                    .padding(.top, 2)
+                Text("\(doneCount)/\(totalCount)")
+                    .font(.footnote.monospacedDigit())
+                    .foregroundStyle(.secondary)
             }
 
             ProgressView(value: progress)
 
-            HStack {
-                Text("\(doneCount)/\(totalCount) erledigt")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-                Spacer()
-                Text("Pins: \(extras.pinnedProductIDs.count + extras.pinnedLexikonCodes.count)")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
+            Text("Pins: \(extras.pinnedProductIDs.count + extras.pinnedLexikonCodes.count)")
+                .font(.caption)
+                .foregroundStyle(.secondary)
+        }
+        .padding()
+        .background(Color(.secondarySystemBackground))
+        .clipShape(RoundedRectangle(cornerRadius: 16))
+    }
+    private var jetztCard: some View {
+        VStack(alignment: .leading, spacing: 12) {
+
+            Text("JETZT")
+                .font(.caption)
+                .foregroundStyle(.secondary)
+
+            Text(whatToDoText)
+                .font(.title2.weight(.bold))
+                .lineLimit(3)
+            
+            Text("DEBUG whatToDoText: \(whatToDoText)")
+                .font(.caption)
+                .foregroundStyle(.red)
+
+
+            // Ausbildungsmodus: nächster Schritt
+            if extras.trainingMode,
+               let next = nextOpenStepTitle,
+               !job.isCompleted {
+
+                HStack(spacing: 6) {
+                    Image(systemName: "arrow.right.circle.fill")
+                    Text(next)
+                }
+                .font(.subheadline)
+                .foregroundStyle(.secondary)
+                .padding(.top, 4)
+            }
+        }
+        .padding(16)
+        .background(.ultraThinMaterial)
+        .clipShape(RoundedRectangle(cornerRadius: 18))
+    }
+
+    private var headerCard: some View {
+        VStack(alignment: .leading, spacing: 10) {
+
+            // 1) Was ist zu tun?
+            Text(whatToDoText)
+                .font(.title2.bold())
+                .lineLimit(3)
+
+            // 2) Zettel-Kopf: Nummer / Ort / Zeit / Personen (nur wenn vorhanden)
+            HStack(spacing: 10) {
+                if !extras.orderNumber.isEmpty {
+                    Label(extras.orderNumber, systemImage: "number")
+                        .font(.footnote)
+                        .foregroundStyle(.secondary)
+                }
+
+                if !extras.station.isEmpty {
+                    Label(extras.station, systemImage: "mappin.and.ellipse")
+                        .font(.footnote)
+                        .foregroundStyle(.secondary)
+                        .lineLimit(1)
+                }
+            }
+
+            HStack(spacing: 12) {
+                if let deadline = extras.deadline {
+                    Label(deadline.formatted(date: .omitted, time: .shortened), systemImage: "clock")
+                        .font(.footnote)
+                        .foregroundStyle(.secondary)
+                }
+
+                if extras.persons > 0 {
+                    Label("\(extras.persons) Pers.", systemImage: "person.2")
+                        .font(.footnote)
+                        .foregroundStyle(.secondary)
+                }
+
+                if let emp = job.employeeName, !emp.isEmpty {
+                    Label(emp, systemImage: "person.fill")
+                        .font(.footnote)
+                        .foregroundStyle(.secondary)
+                }
+            }
+
+            // 3) Optional: Ausbildungsmodus "Jetzt" Hinweis (aber kurz)
+            if extras.trainingMode, let next = nextOpenStepTitle, !job.isCompleted {
+                Text("➡️ Jetzt: \(next)")
+                    .font(.subheadline.weight(.semibold))
+                    .padding(.top, 2)
             }
         }
         .padding()
@@ -116,56 +183,111 @@ struct AuftragDetailView: View {
         .clipShape(RoundedRectangle(cornerRadius: 16))
     }
 
+    
+
+
     private var modeCard: some View {
-        VStack(alignment: .leading, spacing: 10) {
+        HStack {
+            Text(extras.trainingMode ? "🎓 Ausbildung" : "🧑‍🍳 Profi")
+                .font(.headline)
+
+            Spacer()
+
+            Toggle("", isOn: Binding(
+                get: { extras.trainingMode },
+                set: { extras.trainingMode = $0; saveExtras(extras) }
+            ))
+            .labelsHidden()
+        }
+        .padding()
+        .background(Color(.secondarySystemBackground))
+        .clipShape(RoundedRectangle(cornerRadius: 16))
+    }
+    
+    private var productionListCard: some View {
+        VStack(alignment: .leading, spacing: 12) {
+
             HStack {
-                Text("🎓 Modus").font(.headline)
+                Text("📦 Produktionsliste")
+                    .font(.headline)
+
                 Spacer()
 
-                Toggle(isOn: Binding(
-                    get: { extras.trainingMode },
-                    set: { newValue in
-                        extras.trainingMode = newValue
-                        saveExtras(extras)
-                    }
-                )) {
-                    Text(extras.trainingMode ? "Ausbildung" : "Profi")
-                        .font(.subheadline)
-                }
-                .labelsHidden()
+                // Mini-Info wie viele Positionen
+                Text("\(extras.lineItems.count)")
+                    .font(.caption.monospacedDigit())
+                    .foregroundStyle(.secondary)
             }
 
-            Text(extras.trainingMode
-                 ? "Ausbildung: Jeder Schritt muss abgehakt werden (SOP = Lernmodus)."
-                 : "Profi: SOP bleibt sichtbar, aber ein Haken am Ende reicht.")
-            .font(.caption)
-            .foregroundStyle(.secondary)
+            if extras.lineItems.isEmpty {
+                Text("Keine Positionen hinterlegt (wie auf dem Zettel).")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+            } else {
+                VStack(spacing: 10) {
+                    ForEach(extras.lineItems) { item in
+                        VStack(alignment: .leading, spacing: 6) {
+
+                            // Titel
+                            Text(item.title)
+                                .font(.body.weight(.semibold))
+
+                            // Menge/Einheit (nur wenn vorhanden)
+                            if !(item.amount.isEmpty && item.unit.isEmpty) {
+                                Text("\(item.amount) \(item.unit)".trimmingCharacters(in: .whitespaces))
+                                    .font(.subheadline)
+                                    .foregroundStyle(.secondary)
+                            }
+
+                            // Notiz (nur wenn vorhanden)
+                            if !item.note.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+                                Text(item.note)
+                                    .font(.caption)
+                                    .foregroundStyle(.secondary)
+                                    .padding(.top, 2)
+                            }
+                        }
+                        .padding(10)
+                        .background(.thinMaterial)
+                        .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+                    }
+                }
+            }
         }
         .padding()
         .background(Color(.secondarySystemBackground))
         .clipShape(RoundedRectangle(cornerRadius: 16))
     }
 
+
     private var checklistCard: some View {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
                 Text("✅ MEP / Schritte / SOP").font(.headline)
                 Spacer()
+                
+                    Menu {
+                        ForEach(AuftragTemplate.allCases) { tpl in
+                            Button("Vorlage: \(tpl.rawValue)") {
+                                applyTemplate(tpl, mode: .append)
+                            }
+                        }
 
-                Menu {
-                    Button("Vorlage: Setzarbeiten (MEP + SOP)") { addTemplateSetzarbeiten() }
-                    Button("Vorlage: Spätzle Kantine (MEP + SOP)") { addTemplateSpaetzleKantine() }
-                    Divider()
-                    Button(role: .destructive) {
-                        extras.checklist.removeAll()
-                        job.isCompleted = false
-                        saveExtras(extras)
+                        Divider()
+
+                        Button(role: .destructive) {
+                            extras.checklist.removeAll()
+                            job.isCompleted = false
+                            saveExtras(extras)
+                        } label: {
+                            Label("Leeren", systemImage: "trash")
+                        }
+
                     } label: {
-                        Label("Leeren", systemImage: "trash")
+                        Image(systemName: "wand.and.stars")
                     }
-                } label: {
-                    Image(systemName: "wand.and.stars")
-                }
+
+                  
             }
 
             if extras.trainingMode {
@@ -390,4 +512,19 @@ struct AuftragDetailView: View {
         job.isCompleted = false
         saveExtras(extras)
     }
+    private enum TemplateInsertMode { case replace, append }
+
+    private func applyTemplate(_ template: AuftragTemplate, mode: TemplateInsertMode) {
+        let newItems = template.steps.map { AuftragChecklistItem(title: $0) }
+
+        if mode == .replace {
+            extras.checklist = newItems
+        } else {
+            extras.checklist.append(contentsOf: newItems)
+        }
+
+        job.isCompleted = false
+        saveExtras(extras)
+    }
+
 }

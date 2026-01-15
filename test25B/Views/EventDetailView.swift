@@ -349,14 +349,19 @@ struct EventDetailView: View {
             } else {
                 VStack(spacing: 10) {
                     ForEach(filteredJobs, id: \.objectID) { job in
-                        AuftragRowView(auftrag: job) {
-                            refreshID = UUID()
+                        NavigationLink {
+                            AuftragDetailView(job: job)
+                        } label: {
+                            AuftragRowView(auftrag: job) {
+                                refreshID = UUID()
+                            }
+                            .padding(12)
+                            .background(Color(.systemBackground))
+                            .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
+                            .shadow(radius: 1, y: 1)
                         }
-                        .padding(12)
-                        .background(Color(.systemBackground))
-                        .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
-                        .shadow(radius: 1, y: 1)
                     }
+
 
 
                 }

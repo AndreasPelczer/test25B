@@ -37,8 +37,8 @@ struct ContentView: View {
                     )
                 }
             } // <--- ENDE DER LIST
-            .navigationTitle("Events (\(eventListVM.events.count))")
-            .toolbar {
+      //      .navigationTitle("Events (\(eventListVM.events.count))")
+            .navigationBarTitleDisplayMode(.inline)            .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     EditButton()
                 }

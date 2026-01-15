@@ -7,18 +7,37 @@ struct AuftragChecklistItem: Codable, Identifiable, Equatable {
     var isDone: Bool = false
 }
 
+// MARK: - Zettel: Produktionspositionen (die Zeilen vom Zettel)
+struct AuftragLineItem: Codable, Identifiable, Equatable {
+    var id: String = UUID().uuidString
+    var title: String            // z.B. "Bulgur"
+    var amount: String = ""      // z.B. "6"
+    var unit: String = ""        // z.B. "Rezept" / "GN 1/1" / "Port."
+    var note: String = ""        // z.B. "12 Min Dampf, danach auflockern"
+}
+
 // MARK: - Extras Payload (MASTER für Auftrag.extras)
+// -> hier kommt ALLES rein: Modus, SOP, Pins, Zettelkopf, Positionen
 struct AuftragExtrasPayload: Codable {
 
-    /// true = Ausbildungsmodus, false = Profi
+    // Modus
     var trainingMode: Bool = true
 
-    /// SOP / Checkliste
+    // SOP / Checkliste
     var checklist: [AuftragChecklistItem] = []
 
-    /// Knowledge-Pins
+    // Knowledge-Pins
     var pinnedProductIDs: [String] = []
     var pinnedLexikonCodes: [String] = []
+
+    // ✅ Zettelkopf
+    var orderNumber: String = ""     // "9779-04"
+    var station: String = ""         // "Torhaus, E2, Teambüro"
+    var deadline: Date? = nil        // Uhrzeit / Deadline
+    var persons: Int = 0             // Personen/Portionen
+
+    // ✅ Zettel-Positionen
+    var lineItems: [AuftragLineItem] = []
 }
 
 // MARK: - JSON Helfer für Auftrag.extras (String?)
@@ -26,8 +45,7 @@ extension AuftragExtrasPayload {
 
     static func from(_ extrasString: String?) -> AuftragExtrasPayload {
         guard
-            let s = extrasString,
-            !s.isEmpty,
+            let s = extrasString, !s.isEmpty,
             let data = s.data(using: .utf8),
             let decoded = try? JSONDecoder().decode(AuftragExtrasPayload.self, from: data)
         else {
@@ -42,5 +60,5 @@ extension AuftragExtrasPayload {
     }
 }
 
-// MARK: - Kompatibilität (nur Item-Aliases)
+// MARK: - Kompatibilität (nur Item-Alias – KEIN Payload-Alias!)
 typealias ChecklistItem = AuftragChecklistItem

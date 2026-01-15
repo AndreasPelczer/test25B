@@ -6,81 +6,81 @@ struct AuftragRowView: View {
     @ObservedObject var auftrag: Auftrag
     var onChanged: () -> Void
 
-    // Extras lesen
-    private var extras: AuftragExtrasPayload {
-        AuftragExtrasPayload.from(auftrag.extras)
-    }
+    // Extras lesen (Zettelkopf, Positionen, SOP)
+    private var extras: AuftragExtrasPayload { .from(auftrag.extras) }
 
     private var checklistDone: Int { extras.checklist.filter { $0.isDone }.count }
     private var checklistTotal: Int { extras.checklist.count }
 
     private var progress: AuftragProgressData {
-        AuftragProgressData(status: auftrag.status, checklistDone: checklistDone, checklistTotal: checklistTotal)
+        AuftragProgressData(
+            status: auftrag.status,
+            checklistDone: checklistDone,
+            checklistTotal: checklistTotal
+        )
     }
 
     private var isActive: Bool { auftrag.status == .inProgress }
 
-    /// Titel, passend zu deinem CoreData-Modell (kein `auftrag.title`!)
-    private var displayTitle: String {
+    // Zettel-Headline: “Was ist zu tun?”
+    private var whatToDoText: String {
         if let d = auftrag.processingDetails, !d.isEmpty { return d }
-        if let n = auftrag.employeeName, !n.isEmpty { return "Auftrag für \(n)" }
+        if let first = extras.lineItems.first?.title, !first.isEmpty { return first }
         return "Auftrag"
+    }
+
+    // Deadline Text
+    private var deadlineText: String? {
+        guard let d = extras.deadline else { return nil }
+        return d.formatted(date: .omitted, time: .shortened)
     }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
 
-            // Kopfzeile
-            HStack(spacing: 12) {
-                Image(systemName: auftrag.status.iconName)
-                    .foregroundStyle(auftrag.status.color)
-                    .font(.title2)
-
+            // 1) Kopf: Was ist zu tun? + Status Badge
+            HStack(spacing: 10) {
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(displayTitle)
+                    Text(whatToDoText)
                         .font(.headline)
+                        .lineLimit(2)
 
-                    if let note = auftrag.processingDetails, !note.isEmpty {
-                        Text(note)
-                            .font(.subheadline)
-                            .foregroundStyle(.secondary)
-                            .lineLimit(2)
-                    }
-
+                    // 2) Zettel-Kopf: Nummer • Station • Deadline • Personen
+                    zettelMetaLine
                 }
 
                 Spacer()
 
-                Text(auftrag.status.displayName)
-                    .font(.caption)
-                    .padding(.horizontal, 8)
-                    .padding(.vertical, 4)
-                    .background(auftrag.status.color.opacity(0.15))
-                    .foregroundStyle(auftrag.status.color)
-                    .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+                statusBadge
             }
 
-            // Mini-Progress
+            // 3) Mini-Fortschritt (ruhig)
             HStack(spacing: 8) {
                 if checklistTotal > 0 {
                     Text("\(checklistDone)/\(checklistTotal)")
                         .font(.caption2)
                         .foregroundStyle(.secondary)
-                        .frame(minWidth: 42, alignment: .leading)
+                        .frame(minWidth: 44, alignment: .leading)
                 }
 
                 GeometryReader { geo in
                     ZStack(alignment: .leading) {
-                        Capsule().fill(Color.primary.opacity(0.10)).frame(height: 6)
+                        Capsule()
+                            .fill(Color.primary.opacity(0.10))
+                            .frame(height: 6)
+
                         Capsule()
                             .fill(auftrag.status.color.opacity(0.85))
-                            .frame(width: geo.size.width * CGFloat(min(max(progress.ratio, 0), 1)), height: 6)
+                            .frame(
+                                width: geo.size.width * CGFloat(min(max(progress.ratio, 0), 1)),
+                                height: 6
+                            )
                     }
                 }
                 .frame(height: 6)
             }
 
-            // Quick Actions
+            // 4) Quick Actions (optional)
             HStack(spacing: 10) {
                 Button { setStatus(.inProgress) } label: {
                     Image(systemName: "play.fill").frame(width: 34, height: 30)
@@ -124,6 +124,43 @@ struct AuftragRowView: View {
             }
         }
     }
+
+    // MARK: - Subviews
+
+    private var statusBadge: some View {
+        Text(auftrag.status.displayName)
+            .font(.caption)
+            .padding(.horizontal, 8)
+            .padding(.vertical, 4)
+            .background(auftrag.status.color.opacity(0.15))
+            .foregroundStyle(auftrag.status.color)
+            .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+    }
+
+    private var zettelMetaLine: some View {
+        HStack(spacing: 8) {
+            if !extras.orderNumber.isEmpty {
+                Label(extras.orderNumber, systemImage: "number")
+            }
+
+            if !extras.station.isEmpty {
+                Label(extras.station, systemImage: "mappin.and.ellipse")
+            }
+
+            if let t = deadlineText {
+                Label(t, systemImage: "clock")
+            }
+
+            if extras.persons > 0 {
+                Label("\(extras.persons)", systemImage: "person.2")
+            }
+        }
+        .font(.caption)
+        .foregroundStyle(.secondary)
+        .lineLimit(1)
+    }
+
+    // MARK: - Actions
 
     private func setStatus(_ s: AuftragStatus) {
         auftrag.status = s
