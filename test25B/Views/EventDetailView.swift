@@ -5,16 +5,17 @@ import CoreData
 // Wir speichern Zusatzdaten im Event.extras als JSON, damit wir KEIN neues CoreData Entity brauchen.
 
 struct EventExtrasPayload: Codable {
-    var checklist: [ChecklistItem] = []
-    var pinnedProductIDs: [String] = []     // CDProduct.id
-    var pinnedLexikonCodes: [String] = []   // CDLexikonEntry.code
+    var checklist: [EventChecklistItem] = []
+    var pinnedProductIDs: [String] = []
+    var pinnedLexikonCodes: [String] = []
 }
 
-struct ChecklistItem: Codable, Identifiable, Equatable {
+struct EventChecklistItem: Codable, Identifiable, Equatable {
     var id: String = UUID().uuidString
     var title: String
     var isDone: Bool = false
 }
+
 
 // MARK: - Filter für Jobs (bleibt kompatibel)
 enum JobFilter: String, CaseIterable, Identifiable {
@@ -77,6 +78,7 @@ struct EventDetailView: View {
         guard checklistTotalCount > 0 else { return 0 }
         return Double(checklistDoneCount) / Double(checklistTotalCount)
     }
+
 
     var body: some View {
         ScrollView {
@@ -284,7 +286,7 @@ struct EventDetailView: View {
         .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
     }
 
-    private func checklistRow(_ item: ChecklistItem) -> some View {
+    private func checklistRow(_ item: EventChecklistItem) -> some View{
         HStack(spacing: 12) {
             Button {
                 toggleChecklist(itemID: item.id)
@@ -347,14 +349,16 @@ struct EventDetailView: View {
             } else {
                 VStack(spacing: 10) {
                     ForEach(filteredJobs, id: \.objectID) { job in
-                        JobRowView(job: job, onJobUpdated: {
+                        AuftragRowView(auftrag: job) {
                             refreshID = UUID()
-                        })
+                        }
                         .padding(12)
                         .background(Color(.systemBackground))
                         .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
                         .shadow(radius: 1, y: 1)
                     }
+
+
                 }
             }
         }
@@ -419,10 +423,11 @@ struct EventDetailView: View {
     }
 
     // MARK: - Checklist Actions
+
     private func addChecklistItem(title: String) {
         let t = title.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !t.isEmpty else { return }
-        extras.checklist.append(ChecklistItem(title: t))
+        extras.checklist.append(EventChecklistItem(title: t))
         newStepText = ""
         saveExtras(extras)
     }
@@ -438,15 +443,20 @@ struct EventDetailView: View {
         saveExtras(extras)
     }
 
+
     private func addTemplateBuffet() {
         let steps = ["Buffet-Plan prüfen", "GN-Bleche bereitstellen", "Warmhaltegeräte checken", "Beschriftung bereitstellen", "Finale Kontrolle"]
-        for s in steps { extras.checklist.append(ChecklistItem(title: s)) }
+        for s in steps {
+            extras.checklist.append(EventChecklistItem(title: s))
+        }
+
         saveExtras(extras)
     }
 
     private func addTemplateSchnitzel() {
         let steps = ["Schnitzel portionieren", "Panierstraße aufbauen", "GN-Bleche vorbereiten", "Garparameter notieren"]
-        for s in steps { extras.checklist.append(ChecklistItem(title: s)) }
+        let items = steps.map { ChecklistItem(title: $0) }
+
         saveExtras(extras)
     }
 }

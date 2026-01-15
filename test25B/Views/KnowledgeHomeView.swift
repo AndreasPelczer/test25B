@@ -68,6 +68,10 @@ struct KnowledgeHomeView: View {
             }
         }
         .navigationViewStyle(StackNavigationViewStyle())
+        .onAppear {
+            print("📍 KnowledgeHomeView erschienen -> starte ImportIfNeeded")
+            KnowledgeImporter.importIfNeeded(into: context)
+        }
     }
 }
 

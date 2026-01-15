@@ -11,7 +11,7 @@ import Foundation
  * 📊 Berechnet und hält die Fortschrittsdaten für ein einzelnes Event.
  * Kommentar: Diese Struktur übernimmt die Logik zum Zählen der Aufträge nach Status.
  */
-struct JobProgressData {
+struct EventJobProgressData {
     let totalJobs: Int
     let completedCount: Int
     let inProgressCount: Int

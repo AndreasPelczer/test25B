@@ -6,8 +6,8 @@ struct EventRowView: View {
     @ObservedObject var event: Event
     
     // Kommentar: ViewModel-Helper zur Berechnung der Fortschrittszahlen
-    private var progress: JobProgressData {
-        JobProgressData(event: event)
+    private var progress: EventJobProgressData {
+        EventJobProgressData(event: event)
     }
     
     // Hilfsfunktion zur Berechnung der Breite des Balkens

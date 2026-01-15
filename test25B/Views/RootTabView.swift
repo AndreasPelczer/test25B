@@ -22,7 +22,7 @@ struct RootTabView: View {
                     ContentView() // aus test25B
                 }
                 .tabItem {
-                    Label("Mission", systemImage: "target")
+                    Label("Zu erledigen", systemImage: "target")
                 }
             } else {
                 // Fallback on earlier versions
@@ -34,7 +34,7 @@ struct RootTabView: View {
                     CrewPlanningView()
                 }
                 .tabItem {
-                    Label("Crew", systemImage: "person.2.fill")
+                    Label("Mitarbeiter", systemImage: "person.2.fill")
                 }
             }
 

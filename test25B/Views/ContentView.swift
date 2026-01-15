@@ -18,6 +18,7 @@ struct ContentView: View {
         formatter.dateStyle = .short
         formatter.timeStyle = .none
         return formatter
+        
     }()
     
     var body: some View {
@@ -43,8 +44,15 @@ struct ContentView: View {
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     // KORREKTUR: HIER WIRD DIE LOGIK ZUM ÖFFNEN DES SHEETS EINGEFÜGT
+                    Button {
+                        DemoSeeder.seedIfNeeded(into: viewContext)
+                    } label: {
+                        Label("Demo", systemImage: "wand.and.stars")
+                    }
+
                     Button(action: { showingAddEventSheet = true }) {
                         Label("Add Event", systemImage: "plus.circle.fill")
+                        
                     }
                 }
             }
@@ -62,8 +70,10 @@ struct ContentView: View {
             }
         }
         .onAppear {
+            DebugSeeder.seedIfNeeded(context: viewContext)
             eventListVM.applyFilter(filter: selectedFilter)
         }
+
     }
     
     // KORREKTE POSITION für Methoden

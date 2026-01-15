@@ -1,34 +1,23 @@
 // Models/Auftrag.swift (BEREINIGT)
 
 import Foundation
-import CoreData
-
-
-enum JobStatus: String, CaseIterable, Identifiable {
-    case pending = "Offen"
-    case inProgress = "In Bearbeitung"
-    case onHold = "Pausiert"
-    case completed = "Abgeschlossen"
-    
-    var id: String { self.rawValue } // Damit SwiftUI jedes Element eindeutig erkennt
-}
-    
 
 extension Auftrag {
-    // Hier ist KEINE erneute Deklaration von @NSManaged Eigenschaften!
 
-    // Nur die berechnete Property für den Enum-Zugriff behalten:
-    var status: JobStatus {
+    /// Master-Status für die UI (AuftragStatus)
+    var status: AuftragStatus {
         get {
-            // ... (Ihre Logik, die statusRawValue verwendet)
-            return JobStatus(rawValue: statusRawValue ?? JobStatus.pending.rawValue) ?? .pending
+            AuftragStatus(rawValue: statusRawValue ?? AuftragStatus.pending.rawValue) ?? .pending
         }
         set {
-            // ... (Ihre Logik)
             statusRawValue = newValue.rawValue
         }
     }
+
+    /// Kompatibilität: falls irgendwo noch JobStatus verwendet wird
+    var jobStatus: JobStatus {
+        get { status }              // JobStatus ist typealias auf AuftragStatus
+        set { status = newValue }
+    }
 }
 
-// HINWEIS: Die Basisklasse "Auftrag" wird automatisch von Xcode generiert und
-// enthält alle @NSManaged Properties, einschließlich der neuen.
